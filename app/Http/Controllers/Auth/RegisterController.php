@@ -50,9 +50,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'middle_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'string', 'max:255'],
+            'birthdate' => ['required', 'date', 'max:255'],
+            'birthplace' => ['required', 'string', 'max:255'],
+            'civil_status' => ['required', 'string', 'max:255'],
+            'citizenship' => ['required', 'string', 'max:255'],
+            'brgy' => ['required', 'string', 'max:255'],
+            'street' => ['required', 'string', 'max:255'],
+            'purok' => ['required', 'string', 'max:255'],
+            'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:11|max:11',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'image'         => 'nullable|image|file|max:5000',
         ]);
     }
 
@@ -64,8 +76,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['image'])
+        {
+            $filenameWithExt = $data['image']->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $data['image']->getClientOriginalExtension();
+            $file_image = $filename.'_'.time().'.'.$extension;
+            $path = $data['image']->move('public/users_image/',$file_image);
+        }
+        else
+        {
+            $file_image = 'noimage.png';
+        }
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'middle_name' => $data['middle_name'],
+            'last_name' => $data['last_name'],
+            'gender' => $data['gender'],
+            'birthdate' => $data['birthdate'],
+            'birthplace' => $data['birthplace'],
+            'civil_status' => $data['civil_status'],
+            'citizenship' => $data['citizenship'],
+            'brgy' => $data['brgy'],
+            'street' => $data['street'],
+            'purok' => $data['purok'],
+            'contact' => $data['contact'],
+            'image' => $file_image,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
