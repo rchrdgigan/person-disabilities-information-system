@@ -56,7 +56,7 @@ Login Form
                 <!-- /.col -->
                 <div class="col-4">
                     <button type="submit" class="btn btn-primary btn-block">
-                        {{ __('Login') }}
+                    <i class="fa fa-sign-in-alt" aria-hidden="true"></i> {{ __('Login') }}
                     </button>
                 </div>
                 <!-- /.col -->
