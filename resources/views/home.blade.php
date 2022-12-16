@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4 mb-4">
-<form action="" method="POST" enctype="multipart/form-data">
+<div class="container mb-4">
+<form action="{{route('home.update.profile')}}" method="POST" enctype="multipart/form-data">
 @method('PUT')
     @csrf
     <div class="row">
@@ -10,15 +10,13 @@
         @if(session('message'))
             <div class="alert alert-primary alert-dismissible">
                 {{ session('message') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                
             </div>
         @endif
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Profile</div>
                 <div class="card-body box-profile">
@@ -46,11 +44,14 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="col-md-8">
+        </div> -->
+        <div class="col-md-12">
             <div class="card">
-
-                <a href="" class="btn btn-secondary text-white btn-block m-2"><i class="fa fa-download" aria-hidden="true"></i> Generate Application Form</a>
+                <div class="row">   
+                    <div class="col-12">
+                        <a href="" class="btn btn-secondary text-white btn-block m-2"><i class="fa fa-download" aria-hidden="true"></i> Generate Application Form</a>
+                    </div>
+                </div>
                 
                 <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -78,7 +79,7 @@
                                 <div class="col-6">
                                     <label for="mname" class="pt-2 pb-1"><b>Middle Name (Optional)</b></label>
                                     <input id="mname" value="{{auth()->user()->middle_name}}" onkeydown="return /[a-z, ]/i.test(event.key)" name="middle_name" type="text" class="@error('mname') is-invalid @enderror form-control" 
-                                            placeholder="Enter Middle Name" required>
+                                            placeholder="Enter Middle Name">
 
 
                                     <label for="sufix" class="pt-2 pb-1"><b>Sufix</b></label>
@@ -146,9 +147,26 @@
                                     <input id="bdate" name="birthdate" value="{{Carbon\Carbon::parse(auth()->user()->birthdate)->format('Y-m-d')}}" type="date" class="@error('bdate') is-invalid @enderror form-control" required>
                                 </div>
 
+                                <div class="col-12">
+                                    <label for="civil_status" class="pt-2 pb-1"><b>Civil Status</b></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                        </div>
+                                        <select class="form-select" name="civil_status" id="inputGroupSelect01" required>
+                                            <option value="">Please select</option>  
+                                            <option {{(auth()->user()->civil_status == "Single") ? "selected" : ""}} value="Single">Single</option>
+                                            <option {{(auth()->user()->civil_status == "Married") ? "selected" : ""}} value="Married">Married</option>
+                                            <option {{(auth()->user()->civil_status == "Separated") ? "selected" : ""}} value="Separated">Separated</option>
+                                            <option {{(auth()->user()->civil_status == "Widowed") ? "selected" : ""}} value="Widowed">Widow/er</option>
+                                            <option {{(auth()->user()->civil_status == "Cohabitation") ? "selected" : ""}} value="Cohabitation">Co-Habitation (live-in)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-4 col-12">
                                     <label for="age" class="pt-2 pb-1"><b>Age</b></label>
-                                    <input id="age" name="age" value="{{\Carbon\Carbon::parse(auth()->user()->birthdate)->diff(\Carbon\Carbon::now())->format('%y years old')}}" type="text" class="@error('age') is-invalid @enderror form-control" 
+                                    <input id="age" value="{{\Carbon\Carbon::parse(auth()->user()->birthdate)->diff(\Carbon\Carbon::now())->format('%y years old')}}" type="text" class="@error('age') is-invalid @enderror form-control" 
                                             readonly required>
                                 </div>
 
@@ -205,7 +223,7 @@
                                 <div class="col-12">
                                     <label for="landline" class="pt-2 pb-1"><b>Landline Number</b></label>
                                     <input id="landline" name="landline" value="{{auth()->user()->landline}}" type="text" class="@error('landline') is-invalid @enderror form-control" 
-                                            placeholder="Enter landline" required>
+                                            placeholder="Enter landline">
                                 </div>
 
                                 <div class="col-md-4 col-12">
@@ -335,7 +353,7 @@
                                 <div class="col-md-6 col-12">
                                     <label for="occupation" class="pt-2 pb-1"><b>Occupation</b></label>
                                     <input id="occupation" name="occupation" value="{{auth()->user()->occupation}}" type="text" class="@error('occupation') is-invalid @enderror form-control" 
-                                            placeholder="Enter occupation" required>
+                                            placeholder="Enter occupation">
                                 </div>
 
                             </div>
@@ -355,25 +373,25 @@
 
                                 <div class="col-md-6 col-12">
                                     <label for="org_affi" class="pt-2 pb-1"><b>Organization Affiliated (Optional)</b></label>
-                                    <input id="org_affi" name="org_affi" value="" type="text" class="@error('org_affi') is-invalid @enderror form-control" 
+                                    <input id="org_affi" name="org_affi" value="{{auth()->user()->org_affi}}" type="text" class="@error('org_affi') is-invalid @enderror form-control" 
                                             placeholder="Enter Organization Affiliated">
                                 </div>
 
                                 <div class="col-md-6 col-12">
                                     <label for="cont_person" class="pt-2 pb-1"><b>Contact Person (Optional)</b></label>
-                                    <input id="cont_person" name="cont_person" value="" type="text" class="@error('cont_person') is-invalid @enderror form-control" 
+                                    <input id="cont_person" name="cont_person" value="{{auth()->user()->cont_person}}" type="text" class="@error('cont_person') is-invalid @enderror form-control" 
                                             placeholder="Enter Contact Person">
                                 </div>
 
                                 <div class="col-md-6 col-12">
                                     <label for="office_address" class="pt-2 pb-1"><b>Office Address (Optional)</b></label>
-                                    <input id="office_address" name="office_address" value="" type="text" class="@error('office_address') is-invalid @enderror form-control" 
+                                    <input id="office_address" name="office_address" value="{{auth()->user()->office_address}}" type="text" class="@error('office_address') is-invalid @enderror form-control" 
                                             placeholder="Enter Office Address">
                                 </div>
 
                                 <div class="col-md-6 col-12">
                                     <label for="tel_no" class="pt-2 pb-1"><b>Tel. Nos. (Optional)</b></label>
-                                    <input id="tel_no" name="tel_no" value="" type="text" class="@error('tel_no') is-invalid @enderror form-control" 
+                                    <input id="tel_no" name="tel_no" value="{{auth()->user()->tel_no}}" type="text" class="@error('tel_no') is-invalid @enderror form-control" 
                                             placeholder="Enter Tel. Nos.">
                                 </div>
 
@@ -386,16 +404,16 @@
                                         </div>
                                         <select class="form-select" name="id_ref" id="inputGroupSelect01">
                                             <option value="">Please select</option>    
-                                            <option value="N/A">Not Available</option> 
-                                            <option value="passport">Passport ID</option>
-                                            <option value="driverlicense">Driver's License</option>
-                                            <option value="companyid">Company ID</option>
-                                            <option value="schoolid">School ID</option>
-                                            <option value="postal-">Postal ID</option>
-                                            <option value="umpid">Unified Multi-Purpose ID</option>
-                                            <option value="voters">Voter's ID</option>
-                                            <option value="prc">PRC ID</option>
-                                            <option value="birthcertificate">Birth Certificate</option>
+                                            <option {{(auth()->user()->id_ref == "N/A") ? "selected" : ""}} value="N/A">Not Available</option> 
+                                            <option {{(auth()->user()->id_ref == "passport") ? "selected" : ""}} value="passport">Passport ID</option>
+                                            <option {{(auth()->user()->id_ref == "driverlicense") ? "selected" : ""}} value="driverlicense">Driver's License</option>
+                                            <option {{(auth()->user()->id_ref == "companyid") ? "selected" : ""}} value="companyid">Company ID</option>
+                                            <option {{(auth()->user()->id_ref == "schoolid") ? "selected" : ""}} value="schoolid">School ID</option>
+                                            <option {{(auth()->user()->id_ref == "postal") ? "selected" : ""}} value="postal-">Postal ID</option>
+                                            <option {{(auth()->user()->id_ref == "umpid") ? "selected" : ""}} value="umpid">Unified Multi-Purpose ID</option>
+                                            <option {{(auth()->user()->id_ref == "voters") ? "selected" : ""}} value="voters">Voter's ID</option>
+                                            <option {{(auth()->user()->id_ref == "prc") ? "selected" : ""}} value="prc">PRC ID</option>
+                                            <option {{(auth()->user()->id_ref == "birthcertificate") ? "selected" : ""}} value="birthcertificate">Birth Certificate</option>
                                         </select>
                                         @error('id_ref')
                                             <span class="invalid-feedback" role="alert">
@@ -407,85 +425,85 @@
 
                                 <div class="col-md-6 col-12">
                                     <label for="id_ref_no" class="pt-2 pb-1"><b>ID Reference No. (Optional)</b></label>
-                                    <input id="id_ref_no" name="id_ref_no" value="" type="text" class="@error('id_ref_no') is-invalid @enderror form-control" 
+                                    <input id="id_ref_no" name="id_ref_no" value="{{auth()->user()->id_ref_no}}" type="text" class="@error('id_ref_no') is-invalid @enderror form-control" 
                                             placeholder="Enter ID Reference No. (Optional)">
                                 </div>
 
                                 <div class="col-md-6 col-12">
                                     <label for="sss_no" class="pt-2 pb-1"><b>SSS No. (Optional)</b></label>
-                                    <input id="sss_no" name="sss_no" value="" type="text" class="@error('sss_no') is-invalid @enderror form-control" 
+                                    <input id="sss_no" name="sss_no" value="{{auth()->user()->sss_no}}" type="text" class="@error('sss_no') is-invalid @enderror form-control" 
                                             placeholder="Enter SSS No. (Optional)">
                                 </div>
 
                                 <div class="col-md-6 col-12">
                                     <label for="gis_no" class="pt-2 pb-1"><b>GIS No. (Optional)</b></label>
-                                    <input id="gis_no" name="gis_no" value="" type="text" class="@error('gis_no') is-invalid @enderror form-control" 
+                                    <input id="gis_no" name="gis_no" value="{{auth()->user()->gis_no}}" type="text" class="@error('gis_no') is-invalid @enderror form-control" 
                                             placeholder="Enter GIS No. (Optional)">
                                 </div>
 
                                 <div class="col-md-6 col-12">
                                     <label for="pagibig" class="pt-2 pb-1"><b>Pag-Ibig No. (Optional)</b></label>
-                                    <input id="pagibig" name="pagibig" value="" type="text" class="@error('pagibig') is-invalid @enderror form-control" 
+                                    <input id="pagibig" name="pagibig" value="{{auth()->user()->pagibig}}" type="text" class="@error('pagibig') is-invalid @enderror form-control" 
                                             placeholder="Enter Pag-Ibig No. (Optional)">
                                 </div>
 
                                 <div class="col-md-6 col-12">
                                     <label for="philhealth" class="pt-2 pb-1"><b>Philhealth No. (Optional)</b></label>
-                                    <input id="philhealth" name="philhealth" value="" type="text" class="@error('philhealth') is-invalid @enderror form-control" 
+                                    <input id="philhealth" name="philhealth" value="{{auth()->user()->philhealth}}" type="text" class="@error('philhealth') is-invalid @enderror form-control" 
                                             placeholder="Enter Philhealth No. (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="f_lname" class="pt-2 pb-1"><b>Father's Last Name (Optional)</b></label>
-                                    <input id="f_lname" name="f_lname" value="" type="text" class="@error('f_lname') is-invalid @enderror form-control" 
+                                    <input id="f_lname" name="f_lname" value="{{auth()->user()->f_lname}}" type="text" class="@error('f_lname') is-invalid @enderror form-control" 
                                             placeholder="Enter Father's Last Name (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="f_fname" class="pt-2 pb-1"><b>Father's First Name (Optional)</b></label>
-                                    <input id="f_fname" name="f_fname" value="" type="text" class="@error('f_fname') is-invalid @enderror form-control" 
+                                    <input id="f_fname" name="f_fname" value="{{auth()->user()->f_fname}}" type="text" class="@error('f_fname') is-invalid @enderror form-control" 
                                             placeholder="Enter Father's First Name (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="f_mname" class="pt-2 pb-1"><b>Father's Middle Name (Optional)</b></label>
-                                    <input id="f_mname" name="f_mname" value="" type="text" class="@error('f_mname') is-invalid @enderror form-control" 
+                                    <input id="f_mname" name="f_mname" value="{{auth()->user()->f_mname}}" type="text" class="@error('f_mname') is-invalid @enderror form-control" 
                                             placeholder="Enter Father's Middle Name (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="m_lname" class="pt-2 pb-1"><b>Mother's Last Name (Optional)</b></label>
-                                    <input id="m_lname" name="m_lname" value="" type="text" class="@error('m_lname') is-invalid @enderror form-control" 
+                                    <input id="m_lname" name="m_lname" value="{{auth()->user()->m_lname}}" type="text" class="@error('m_lname') is-invalid @enderror form-control" 
                                             placeholder="Enter Mother's Last Name (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="m_fname" class="pt-2 pb-1"><b>Mother's First Name (Optional)</b></label>
-                                    <input id="m_fname" name="m_fname" value="" type="text" class="@error('m_fname') is-invalid @enderror form-control" 
+                                    <input id="m_fname" name="m_fname" value="{{auth()->user()->m_fname}}" type="text" class="@error('m_fname') is-invalid @enderror form-control" 
                                             placeholder="Enter Mother's First Name (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="m_mname" class="pt-2 pb-1"><b>Mother's Middle Name (Optional)</b></label>
-                                    <input id="m_mname" name="m_mname" value="" type="text" class="@error('m_mname') is-invalid @enderror form-control" 
+                                    <input id="m_mname" name="m_mname" value="{{auth()->user()->m_mname}}" type="text" class="@error('m_mname') is-invalid @enderror form-control" 
                                             placeholder="Enter Mother's Middle Name (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="g_lname" class="pt-2 pb-1"><b>Guardian's Last Name (Optional)</b></label>
-                                    <input id="g_lname" name="g_lname" value="" type="text" class="@error('g_lname') is-invalid @enderror form-control" 
+                                    <input id="g_lname" name="g_lname" value="{{auth()->user()->g_lname}}" type="text" class="@error('g_lname') is-invalid @enderror form-control" 
                                             placeholder="Enter Guardian's Last Name (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="g_fname" class="pt-2 pb-1"><b>Guardian's First Name (Optional)</b></label>
-                                    <input id="g_fname" name="g_fname" value="" type="text" class="@error('g_fname') is-invalid @enderror form-control" 
+                                    <input id="g_fname" name="g_fname" value="{{auth()->user()->g_fname}}" type="text" class="@error('g_fname') is-invalid @enderror form-control" 
                                             placeholder="Enter Guardian's First Name (Optional)">
                                 </div>
 
                                 <div class="col-md-4 col-12">
                                     <label for="g_mname" class="pt-2 pb-1"><b>Guardian's Middle Name (Optional)</b></label>
-                                    <input id="g_mname" name="g_mname" value="" type="text" class="@error('g_mname') is-invalid @enderror form-control" 
+                                    <input id="g_mname" name="g_mname" value="{{auth()->user()->g_mname}}" type="text" class="@error('g_mname') is-invalid @enderror form-control" 
                                             placeholder="Enter Guardian's Middle Name (Optional)">
                                 </div>
 

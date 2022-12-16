@@ -74,7 +74,6 @@ class RegisterController extends Controller
             'blood_type' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'image'         => 'nullable|image|file|max:5000',
         ]);
     }
 
@@ -86,18 +85,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['image'])
-        {
-            $filenameWithExt = $data['image']->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $data['image']->getClientOriginalExtension();
-            $file_image = $filename.'_'.time().'.'.$extension;
-            $path = $data['image']->move('public/users_image/',$file_image);
-        }
-        else
-        {
-            $file_image = 'noimage.png';
-        }
         return User::create([
             'first_name' => $data['first_name'],
             'middle_name' => $data['middle_name'],
@@ -121,7 +108,6 @@ class RegisterController extends Controller
             'emp_stat_type' => $data['emp_stat_type'],
             'occupation' => $data['occupation'],
             'blood_type' => $data['blood_type'],
-            'image' => $file_image,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
