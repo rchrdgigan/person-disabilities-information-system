@@ -56,7 +56,6 @@ return new class extends Migration
             $table->string('g_lname')->nullable();
             $table->string('g_fname')->nullable();
             $table->string('g_mname')->nullable();
-            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('type')->default(0);

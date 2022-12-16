@@ -11,16 +11,6 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="container">
-                            <div class="picture-container">
-                                <div class="picture">
-                                    <img src="/public/users_image/{{old('image')}}" class="picture-src" id="wizardPicturePreview" title="">
-                                    <input type="file" name="image" id="wizard-picture" class="" required>
-                                    <h6 class="">Choose Picture</h6>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div class="form-group row mt-4 mb-1">
                             <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{HomeController,UserController};
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +18,16 @@ Route::redirect('/', 'login');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::put('/udpate/profile', [UserController::class, 'updateUser'])->name('home.update.profile');
 });
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
   
-    Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
 });
