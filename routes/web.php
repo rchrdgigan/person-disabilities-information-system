@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController,UserController};
+use App\Http\Controllers\{HomeController,UserController,BarangayController};
+use App\Models\Barangay;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,12 @@ use App\Http\Controllers\{HomeController,UserController};
 Route::redirect('/', 'login');
 
 Auth::routes();
+Route::get('/register', function () {
+    $brgy = Barangay::get();
+    return view('auth.register',compact('brgy'));
+})->name('register');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
@@ -30,4 +34,5 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
   
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('/admin/barangay', [BarangayController::class, 'listBarangay'])->name('barangay');
 });

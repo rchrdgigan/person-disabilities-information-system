@@ -233,9 +233,23 @@
                                 </div>
 
                                 <div class="col-md-4 col-12">
-                                    <label for="brgy" class="pt-2 pb-1"><b>Brgy.</b></label>
-                                    <input id="brgy" name="brgy" value="{{auth()->user()->brgy}}" type="text" class="@error('brgy') is-invalid @enderror form-control" 
-                                            placeholder="Enter Brgy." required>
+                                    <label for="brgy_id" class="pt-2 pb-1"><b>Brgy:</b></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="brgy_id">Options</label>
+                                        </div>
+                                        <select class="form-select" name="brgy_id" id="brgy_id" required>
+                                            <option value="">Please select</option>   
+                                            @foreach($brgy as $data)  
+                                                <option {{(auth()->user()->brgy_id == $data->id) ? "selected" : ""}} value="{{$data->id}}">{{$data->brgy}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('brgy_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-md-4 col-12">

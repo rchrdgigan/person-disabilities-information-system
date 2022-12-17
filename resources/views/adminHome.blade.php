@@ -15,14 +15,14 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-info" style="border-radius:20px;">
                 <div class="inner">
-                <h3>0</h3>
+                <h3>{{$brgy_count}}</h3>
 
                 <p>Total of Barangay</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-university" aria-hidden="true"></i>
                 </div>
-                <a href="" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
+                <a href="{{route('barangay')}}" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
             </div>
         </div>
 

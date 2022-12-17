@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Barangay;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $brgy = Barangay::get();
+        return view('home',compact('brgy'));
     }
 
     /**
@@ -33,6 +35,7 @@ class HomeController extends Controller
      */
     public function adminHome()
     {
-        return view('adminHome');
+        $brgy_count = Barangay::count();
+        return view('adminHome',compact('brgy_count'));
     }
 }
