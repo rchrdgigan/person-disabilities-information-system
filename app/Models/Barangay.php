@@ -13,7 +13,7 @@ class Barangay extends Model
         'brgy',
     ];
 
-    public function users(){
+    public function user(){
         return $this->hasMany(User::class);
     }
     

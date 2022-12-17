@@ -233,18 +233,18 @@
                                 </div>
 
                                 <div class="col-md-4 col-12">
-                                    <label for="brgy_id" class="pt-2 pb-1"><b>Brgy:</b></label>
+                                    <label for="barangay_id" class="pt-2 pb-1"><b>Brgy:</b></label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="brgy_id">Options</label>
+                                            <label class="input-group-text" for="barangay_id">Options</label>
                                         </div>
-                                        <select class="form-select" name="brgy_id" id="brgy_id" required>
+                                        <select class="form-select" name="barangay_id" id="barangay_id" required>
                                             <option value="">Please select</option>   
                                             @foreach($brgy as $data)  
-                                                <option {{(auth()->user()->brgy_id == $data->id) ? "selected" : ""}} value="{{$data->id}}">{{$data->brgy}}</option>
+                                                <option {{(auth()->user()->barangay_id == $data->id) ? "selected" : ""}} value="{{$data->id}}">{{$data->brgy}}</option>
                                             @endforeach
                                         </select>
-                                        @error('brgy_id')
+                                        @error('barangay_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

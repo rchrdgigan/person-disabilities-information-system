@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('title')
-Barangay
+PWD List
 @endsection
 @section('breadcrumbs')
-Barangay List
+PWD List
 @endsection
 
 @push('links')
@@ -16,26 +16,36 @@ Barangay List
 <div class="container-fluid">
     <div class="card">
         <div class="card-header bg-primary">
-          <h3 class="card-title">Barangay List</h3>
+          <h3 class="card-title">PWD List</h3>
         </div>
 
         <div class="card-body">
             <table id="list_item" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>Barangay Name</th>
-                    <th>Total of PWD</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Sex</th>
+                    <th>Age</th>
+                    <th>Date of Birth</th>
+                    <th>Civil Status</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($brgys as $data)
+                    @foreach($users as $data)
                     <tr>
-                        <td>{{$data->brgy}}</td>
-                        @forelse($users->where('barangay_id', $data->id)->take(1) as $user)
-                            <td>{{$user->where('barangay_id', $data->id)->where('type',false)->count()}}</td>
-                        @empty
-                        <td>0</td>
-                        @endforelse
+                        <td>{{$data->first_name.' '.$data->middle_name.' '.$data->last_name}} {{($data->sufix == 'N/A') ? '':$data->sufix}}</td>
+                        <td>{{$data->street}}, {{$data->barangay->brgy}}, {{$data->municipality}}, {{$data->province}}</td>
+                        <td>{{$data->gender}}</td>
+                        <td>{{$data->gender}}</td>
+                        <td>{{\Carbon\Carbon::parse($data->birthdate)->diff(\Carbon\Carbon::now())->format('%y years old')}}</td>
+                        <td>{{$data->civil_status}}</td>
+                        <td>
+                            <a href="" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a href="" class="btn btn-success"><i class="fa fa-comments" aria-hidden="true"></i></a>
+                            <a href="" class="btn btn-info"><i class="fa fa-id-card" aria-hidden="true"></i></a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="text-white nav-link">
+                <a href="{{route('disability')}}" class="text-white nav-link {{!request()->routeIs('disability') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     Disability Type
@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="text-white nav-link">
+                <a href="{{route('bloodtype')}}" class="text-white nav-link {{!request()->routeIs('bloodtype') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     Blood Type
@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="text-white nav-link">
+                <a href="{{route('classification')}}" class="text-white nav-link {{!request()->routeIs('classification') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     Classification
@@ -62,7 +62,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="text-white nav-link">
+                <a href="{{route('pwd')}}" class="text-white nav-link {{!request()->routeIs('pwd') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     PWD List
@@ -70,7 +70,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="text-white nav-link">
+                <a href="{{route('message')}}" class="text-white nav-link {{!request()->routeIs('message') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     SMS Notification

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController,UserController,BarangayController};
+use App\Http\Controllers\{HomeController,UserController,BarangayController,PwdController,SmsNotificationController,DisablityTypeController,BloodTypeController,ClassificationController};
 use App\Models\Barangay;
 
 /*
@@ -35,4 +35,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
   
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::get('/admin/barangay', [BarangayController::class, 'listBarangay'])->name('barangay');
+    Route::get('/admin/disability', [DisablityTypeController::class, 'listDisability'])->name('disability');
+    Route::get('/admin/bloodtype', [BloodTypeController::class, 'listBloodType'])->name('bloodtype');
+    Route::get('/admin/classification', [ClassificationController::class, 'listClassification'])->name('classification');
+    Route::get('/admin/pwd', [PwdController::class, 'listPWD'])->name('pwd');
+    Route::get('/admin/message', [SmsNotificationController::class, 'listMessage'])->name('message');
 });
