@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('title')
-Barangay
+Blood Type
 @endsection
 @section('breadcrumbs')
-Barangay List
+Blood Type List
 @endsection
 
 @push('links')
@@ -16,26 +16,26 @@ Barangay List
 <div class="container-fluid">
     <div class="card">
         <div class="card-header bg-primary">
-          <h3 class="card-title">Barangay List</h3>
+          <h3 class="card-title">Blood Type List</h3>
         </div>
 
         <div class="card-body">
             <table id="list_item" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                    <th>Barangay Name</th>
-                    <th>Total of PWD</th>
-                </tr>
+                    <tr>
+                        <th>PWD Name</th>
+                        <th>Blood Type</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    @foreach($brgys as $data)
+                    @foreach($users as $data)
                     <tr>
-                        <td>{{$data->brgy}}</td>
-                        @forelse($users->where('barangay_id', $data->id)->take(1) as $user)
-                            <td>{{$user->where('barangay_id', $data->id)->where('type',false)->count()}}</td>
-                        @empty
-                        <td>0</td>
-                        @endforelse
+                        <td>{{$data->first_name.' '.$data->middle_name.' '.$data->last_name}}</td>
+                        <td>{{$data->blood_type}}</td>
+                        <td>
+                            <a href="" class="btn btn-success"><i class="fa fa-pencil-alt" aria-hidden="true"></i> Edit</a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

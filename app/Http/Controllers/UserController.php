@@ -20,7 +20,7 @@ class UserController extends Controller
             'ethnic_group' => 'required|string|max:255',
             'birthdate' => 'required|date|max:255',
             'civil_status' => 'required|string|max:255',
-            'brgy_id' => 'required|string|max:255',
+            'barangay_id' => 'required|string|max:255',
             'street' => 'required|string|max:255',
             'municipality' => 'required|string|max:255',
             'province' => 'required|string|max:255',
@@ -63,7 +63,7 @@ class UserController extends Controller
         $user->ethnic_group = $request->ethnic_group;
         $user->birthdate = $request->birthdate;
         $user->civil_status = $request->civil_status;
-        $user->brgy_id = $request->brgy_id;
+        $user->barangay_id = $request->barangay_id;
         $user->street = $request->street;
         $user->municipality = $request->municipality;
         $user->province = $request->province;

@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('title')
-Barangay
+Message
 @endsection
 @section('breadcrumbs')
-Barangay List
+Message List
 @endsection
 
 @push('links')
@@ -16,28 +16,21 @@ Barangay List
 <div class="container-fluid">
     <div class="card">
         <div class="card-header bg-primary">
-          <h3 class="card-title">Barangay List</h3>
+          <h3 class="card-title">Message List</h3><a href="" class="btn btn-success float-right">Create Message</a>
         </div>
 
         <div class="card-body">
             <table id="list_item" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>Barangay Name</th>
-                    <th>Total of PWD</th>
+                    <th>PWD Name</th>
+                    <th>Contact No.</th>
+                    <th>Message</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($brgys as $data)
-                    <tr>
-                        <td>{{$data->brgy}}</td>
-                        @forelse($users->where('barangay_id', $data->id)->take(1) as $user)
-                            <td>{{$user->where('barangay_id', $data->id)->where('type',false)->count()}}</td>
-                        @empty
-                        <td>0</td>
-                        @endforelse
-                    </tr>
-                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
