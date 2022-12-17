@@ -30,7 +30,7 @@ class User extends Authenticatable
         'birthdate',
         'birthplace',
         'civil_status',
-        'brgy',
+        'brgy_id',
         'street',
         'municipality',
         'province',
@@ -94,5 +94,9 @@ class User extends Authenticatable
         return new Attribute(
             get: fn ($value) => ["user", "admin"][$value],
         );
+    }
+
+    public function barangay(){
+        return $this->belongsTo(Barangay::class);
     }
 }

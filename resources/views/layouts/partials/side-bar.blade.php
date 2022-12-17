@@ -30,7 +30,7 @@
             </li>
             <li class="nav-header">MANAGEMENT</li>
             <li class="nav-item">
-                <a href="" class="text-white nav-link">
+                <a href="{{route('barangay')}}" class="text-white nav-link {{!request()->routeIs('barangay') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     Barangay

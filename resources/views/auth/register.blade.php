@@ -56,7 +56,7 @@
                         <div class="form-group row mb-1">
                             <label for="sufix" class="col-md-4 col-form-label text-md-end">Sufix </label>
                             <div class="col-md-6">
-                                <select class="form-select" name="sufix" id="inputGroupSelect01" required>
+                                <select class="form-select" name="sufix" id="sufix" required>
                                     <option value="">Please select</option>
                                     <option value="N/A">Not Applicable</option>
                                     <option value="Jr.">Jr.</option>
@@ -102,7 +102,7 @@
                         <div class="form-group row mb-1">
                             <label for="gender" class="col-md-4 col-form-label text-md-end">Gender </label>
                             <div class="col-md-6">
-                                <select class="form-select" name="gender" id="inputGroupSelect01" required>
+                                <select class="form-select" name="gender" id="gender" required>
                                     <option value="">Please select</option>    
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -118,7 +118,7 @@
                         <div class="row mb-1">
                             <label for="civil_status" class="col-md-4 col-form-label text-md-end">Civil Status </label>
                             <div class="col-md-6">
-                                <select class="form-select" name="civil_status" id="inputGroupSelect01" required>
+                                <select class="form-select" name="civil_status" id="civil_status" required>
                                     <option value="">Please select</option>  
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
@@ -177,41 +177,16 @@
                         </div>
 
                         <div class="form-group row mb-1">
-                            <label for="brgy" class="col-md-4 col-form-label text-md-end">Baranggay</label>
+                            <label for="brgy_id" class="col-md-4 col-form-label text-md-end">Baranggay</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="brgy" id="inputGroupSelect01" required>
-                                    <option value="">Please select</option>    
-                                    <option value="Bagsangan">Bagsangan</option>
-                                    <option value="Bacolod (Poblacion)">Bacolod (Poblacion)</option>
-                                    <option value="Batang">Batang</option>
-                                    <option value="Bolos">Bolos</option>
-                                    <option value="Buenavista">Buenavista</option>
-                                    <option value="Bulawan">Bulawan</option>
-                                    <option value="Carriedo">Carriedo</option>
-                                    <option value="Casini">Casini</option>
-                                    <option value="Cawayan">Cawayan</option>
-                                    <option value="Cogon">Cogon</option>
-                                    <option value="Gabao">Gabao</option>
-                                    <option value="Gulang-Gulang">Gulang-Gulang</option>
-                                    <option value="Gumapia">Gumapia</option>
-                                    <option value="Santo Domingo (Lamboon)">Santo Domingo (Lamboon)</option>
-                                    <option value="Liang">Liang</option>
-                                    <option value="Macawayan">Macawayan</option>
-                                    <option value="Mapaso">Mapaso</option>
-                                    <option value="Monbon">Monbon</option>
-                                    <option value="Patag">Patag</option>
-                                    <option value="Salvacion">Salvacion</option>
-                                    <option value="San Agustin (Poblacion)">San Agustin (Poblacion)</option>
-                                    <option value="San Isidro (Palogtok)">San Isidro (Palogtok)</option>
-                                    <option value="San Juan (Poblacion)">San Juan (Poblacion)</option>
-                                    <option value="San Julian (Poblacion)">San Julian (Poblacion)</option>
-                                    <option value="San Pedro (Poblacion)">San Pedro (Poblacion)</option>
-                                    <option value="Tabon-Tabon">Tabon-Tabon</option>
-                                    <option value="Tinampo">Tinampo</option>
-                                    <option value="Tongdol">Tongdol</option>
+                                <select class="form-select" name="brgy_id" id="brgy_id" required>
+                                    <option value="">Please select</option>  
+                                    @foreach($brgy as $data)  
+                                    <option value="{{$data->id}}">{{$data->brgy}}</option>
+                                    @endforeach
                                 </select>
                             </div>
-                            @error('brgy')
+                            @error('brgy_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -264,7 +239,7 @@
                             <label for="region" class="col-md-4 col-form-label text-md-end">{{ __('Region') }}</label>
 
                             <div class="col-md-6">
-                                <input id="region" type="text" class="form-control @error('region') is-invalid @enderror" name="region" value="Region V" required autocomplete="region" autofocus>
+                                <input id="region" type="text" class="form-control @error('region') is-invalid @enderror" name="region" value="Region V" required autofocus>
 
                                 @error('region')
                                     <span class="invalid-feedback" role="alert">
@@ -292,7 +267,7 @@
                             <label for="landline" class="col-md-4 col-form-label text-md-end">{{ __('Landline Number (Optional)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="landline" type="text" class="form-control @error('landline') is-invalid @enderror" name="landline" value="{{ old('landline') }}" required autocomplete="landline" autofocus>
+                                <input id="landline" type="text" class="form-control @error('landline') is-invalid @enderror" name="landline" value="{{ old('landline') }}" autocomplete="landline" autofocus>
 
                                 @error('landline')
                                     <span class="invalid-feedback" role="alert">
@@ -305,7 +280,7 @@
                         <div class="form-group row mb-1">
                             <label for="educ_attain" class="col-md-4 col-form-label text-md-end">Educational Attainment</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="educ_attain" id="inputGroupSelect01" required>
+                                <select class="form-select" name="educ_attain" id="educ_attain" required>
                                     <option value="">Please select</option>    
                                     <option value="None">None</option>
                                     <option value="Elementary Education">Elementary Education</option>
@@ -326,7 +301,7 @@
                         <div class="form-group row mb-1">
                             <label for="emp_stat" class="col-md-4 col-form-label text-md-end">Status of Employment</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="emp_stat" id="inputGroupSelect01" required>
+                                <select class="form-select" name="emp_stat" id="emp_stat" required>
                                     <option value="">Please select</option>    
                                     <option value="None">None</option>
                                     <option value="Employed">Employed</option>
@@ -344,7 +319,7 @@
                         <div class="form-group row mb-1">
                             <label for="emp_stat_cat" class="col-md-4 col-form-label text-md-end">Category of Employment</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="emp_stat_cat" id="inputGroupSelect01" required>
+                                <select class="form-select" name="emp_stat_cat" id="emp_stat_cat" required>
                                     <option value="">Please select</option>    
                                     <option value="None">None</option>
                                     <option value="Government">Government</option>
@@ -361,7 +336,7 @@
                         <div class="form-group row mb-1">
                             <label for="emp_stat_type" class="col-md-4 col-form-label text-md-end">Types of Employment</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="emp_stat_type" id="inputGroupSelect01" required>
+                                <select class="form-select" name="emp_stat_type" id="emp_stat_type" required>
                                     <option value="">Please select</option>  
                                     <option value="None">None</option>  
                                     <option value="Permanent/Regular">Permanent/Regular</option>
@@ -394,7 +369,7 @@
                         <div class="form-group row mb-1">
                             <label for="blood_type" class="col-md-4 col-form-label text-md-end">Blood Type</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="blood_type" id="inputGroupSelect01" required>
+                                <select class="form-select" name="blood_type" id="blood_type" required>
                                     <option value="">Please select</option>
                                     <option value="N/A">Not Available</option>
                                     <option value="A+">A+</option>

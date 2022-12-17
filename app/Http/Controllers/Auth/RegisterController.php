@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'ethnic_group' => ['required', 'string', 'max:255'],
             'birthdate' => ['required', 'date', 'max:255'],
             'civil_status' => ['required', 'string', 'max:255'],
-            'brgy' => ['required', 'string', 'max:255'],
+            'brgy_id' => ['required', 'string', 'max:255'],
             'street' => ['required', 'string', 'max:255'],
             'municipality' => ['required', 'string', 'max:255'],
             'province' => ['required', 'string', 'max:255'],
@@ -85,6 +85,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         return User::create([
             'first_name' => $data['first_name'],
             'middle_name' => $data['middle_name'],
@@ -95,7 +96,7 @@ class RegisterController extends Controller
             'ethnic_group' => $data['ethnic_group'],
             'birthdate' => $data['birthdate'],
             'civil_status' => $data['civil_status'],
-            'brgy' => $data['brgy'],
+            'brgy_id' => $data['brgy_id'],
             'street' => $data['street'],
             'municipality' => $data['municipality'],
             'province' => $data['province'],

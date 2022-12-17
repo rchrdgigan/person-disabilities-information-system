@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('brgy_id')->references('id')->on('barangays')->onUpdate('cascade')->onDelete('cascade');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
@@ -25,7 +26,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->dateTime('birthdate');
             $table->string('civil_status');
-            $table->string('brgy');
             $table->string('street');
             $table->string('municipality');
             $table->string('province');
