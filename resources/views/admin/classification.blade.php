@@ -16,7 +16,8 @@ Classification List
 <div class="container-fluid">
     <div class="card">
         <div class="card-header bg-primary">
-          <h3 class="card-title">Classification List</h3><a href="" class="btn btn-success float-right">Add</a>
+          <h3 class="card-title">Classification List</h3>
+          <a href="" class="btn btn-success float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</a>
         </div>
 
         <div class="card-body">
