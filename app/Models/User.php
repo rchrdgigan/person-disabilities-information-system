@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    protected $appends = ['fullname'];
     /**
      * The attributes that are mass assignable.
      *
@@ -98,5 +98,10 @@ class User extends Authenticatable
 
     public function barangay(){
         return $this->belongsTo(Barangay::class);
+    }
+    
+    public function getFullNameAttribute()
+    {
+        return "{$this['first_name']} {$this['middle_name']} {$this['last_name']}";
     }
 }
