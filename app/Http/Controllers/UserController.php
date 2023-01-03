@@ -97,7 +97,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->update();
 
-
         return back()->with('message','User profile information updated successfully!');
     }
 }

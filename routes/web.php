@@ -34,13 +34,25 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
   
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+
     Route::get('/admin/barangay', [BarangayController::class, 'listBarangay'])->name('barangay');
 
     Route::get('/admin/disability', [DisablityTypeController::class, 'listDisability'])->name('disability');
     Route::post('/admin/disability/store', [DisablityTypeController::class, 'store'])->name('disability.store');
+    Route::get('/admin/disability/edit/{id}', [DisablityTypeController::class, 'edit'])->name('disability.edit');
+    Route::put('/admin/disability/update/{id}', [DisablityTypeController::class, 'update'])->name('disability.update');
+    Route::delete('/admin/disability/destroy', [DisablityTypeController::class, 'destroy'])->name('disability.destroy');
 
     Route::get('/admin/bloodtype', [BloodTypeController::class, 'listBloodType'])->name('bloodtype');
+    Route::get('/admin/bloodtype/edit/{id}', [BloodTypeController::class, 'editBloodType'])->name('bloodtype.edit');
+    Route::put('/admin/bloodtype/update/{id}', [BloodTypeController::class, 'updateBloodType'])->name('bloodtype.update');
+
     Route::get('/admin/classification', [ClassificationController::class, 'listClassification'])->name('classification');
+    Route::post('/admin/classification/store', [ClassificationController::class, 'store'])->name('classification.store');
+    Route::get('/admin/classification/edit/{id}', [ClassificationController::class, 'edit'])->name('classification.edit');
+    Route::put('/admin/classification/update/{id}', [ClassificationController::class, 'update'])->name('classification.update');
+    Route::delete('/admin/classification/destroy', [ClassificationController::class, 'destroy'])->name('classification.destroy');
+
     Route::get('/admin/pwd', [PwdController::class, 'listPWD'])->name('pwd');
     Route::get('/admin/message', [SmsNotificationController::class, 'listMessage'])->name('message');
 });
