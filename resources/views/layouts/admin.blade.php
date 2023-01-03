@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>Admin | @yield('title')</title>
+  <title>Admin Panel | @yield('title')</title>
 
   @stack('links')
   <!-- Google Font: Source Sans Pro -->
