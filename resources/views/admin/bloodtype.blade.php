@@ -14,60 +14,172 @@ Blood Type List
 
 @section('content')
 <div class="container-fluid">
-    <div class="card">
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-pink">
+                <div class="inner">
+                    <h3>A+</h3>
 
-        <div class="row">
+                    <p>{{number_format($aplus)}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>A-</h3>
+
+                    <p>{{number_format($aminus)}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-secondary">
+                <div class="inner">
+                    <h3>AB+</h3>
+
+                    <p>{{number_format($abplus)}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-purple">
+                <div class="inner">
+                    <h3>AB-</h3>
+
+                    <p>{{number_format($abminus)}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>B+</h3>
+                    <p>{{number_format($bplus)}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>B-</h3>
+
+                    <p>{{number_format($bminus)}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>O+</h3>
+
+                    <p>{{number_format($oplus)}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-teal">
+                <div class="inner">
+                    <h3>O-</h3>
+
+                    <p>{{number_format($ominus)}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+        @if(session('message'))
+            <div class="card bg-gradient-success">
+                <div class="card-header">
+                    <h3 class="card-title">{{ session('message') }}</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
+        </div>
+        @if($errors->any())
             <div class="col-12">
-            @if(session('message'))
-                <div class="card bg-gradient-success">
+                <div class="card card-danger">
                     <div class="card-header">
-                        <h3 class="card-title">{{ session('message') }}</h3>
+                        <h3 class="card-title">Oops something wrong!</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
                             </button>
                         </div>
                     </div>
-                </div>
-            @endif
-            </div>
-            @if($errors->any())
-                <div class="col-12">
-                    <div class="card card-danger">
-                        <div class="card-header">
-                            <h3 class="card-title">Oops something wrong!</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                                </button>
-                            </div>
+                    <div class="card-body">
+                        @error('user_id')
+                        <div class="col-12">
+                            <span class="text-danger">
+                                The pwd disabilities has already been exist.
+                            </span>
                         </div>
-                        <div class="card-body">
-                            @error('user_id')
-                            <div class="col-12">
-                                <span class="text-danger">
-                                    The pwd disabilities has already been exist.
-                                </span>
-                            </div>
-                            @enderror
-                            @error('type')
-                            <div class="col-12">
-                                <span class="text-danger">
-                                    {{ $message }}
-                                </span>
-                            </div>
-                            @enderror
-                            @error('cause')
-                            <div class="col-12">
-                                <span class="text-danger">
-                                    {{ $message }}
-                                </span>
-                            </div>
-                            @enderror
+                        @enderror
+                        @error('type')
+                        <div class="col-12">
+                            <span class="text-danger">
+                                {{ $message }}
+                            </span>
                         </div>
+                        @enderror
+                        @error('cause')
+                        <div class="col-12">
+                            <span class="text-danger">
+                                {{ $message }}
+                            </span>
+                        </div>
+                        @enderror
                     </div>
                 </div>
-            @endif
-        </div>
-    
+            </div>
+        @endif
+    </div>
+
+    <div class="card">
         <div class="card-header bg-primary">
           <h3 class="card-title">Blood Type List</h3>
         </div>

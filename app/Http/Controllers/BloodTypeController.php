@@ -9,7 +9,15 @@ class BloodTypeController extends Controller
 {
     public function listBloodType(){
         $users = User::where('type',false)->get();
-        return view('admin.bloodtype',compact('users'));
+        $aplus = User::where('blood_type','A+')->count();
+        $aminus = User::where('blood_type','A-')->count();
+        $abplus = User::where('blood_type','AB+')->count();
+        $abminus = User::where('blood_type','AB-')->count();
+        $bplus = User::where('blood_type','B+')->count();
+        $bminus = User::where('blood_type','B-')->count();
+        $oplus = User::where('blood_type','O+')->count();
+        $ominus = User::where('blood_type','O-')->count();
+        return view('admin.bloodtype',compact('users','aplus','aminus','abplus','abminus','bplus','bminus','oplus','ominus'));
     }
     public function editBloodType($id){
         $pwd = User::where('type',false)->where('id',$id)->first();

@@ -15,7 +15,7 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-info" style="border-radius:20px;">
                 <div class="inner">
-                <h3>{{$brgy_count}}</h3>
+                <h3>{{number_format($brgy_count)}}</h3>
 
                 <p>Total of Barangay</p>
                 </div>
@@ -30,14 +30,13 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-purple" style="border-radius:20px;">
               <div class="inner">
-                <h3>{{$admin_count}}</h3>
+                <h3>{{number_format($admin_count)}}</h3>
 
                 <p>Total of Users</p>
               </div>
               <div class="icon">
                 <i class="fa fa-users" aria-hidden="true"></i>
               </div>
-              <a href="" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
             </div>
         </div>
 
@@ -45,14 +44,14 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-warning" style="border-radius:20px;">
               <div class="inner">
-                <h3>{{$pwd_count}}</h3>
+                <h3>{{number_format($pwd_count)}}</h3>
 
                 <p>Total of PWD</p>
               </div>
               <div class="icon">
                 <i class="fa fa-blind" aria-hidden="true"></i>
               </div>
-              <a href="{{route('barangay')}}" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
+              <a href="{{route('pwd')}}" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
             </div>
         </div>
 
@@ -67,7 +66,7 @@ Dashboard
               <div class="icon">
                 <i class="fa fa-comment" aria-hidden="true"></i>
               </div>
-              <a href="" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
+              <a href="{{route('message')}}" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
             </div>
         </div>
 
@@ -82,7 +81,7 @@ Dashboard
               <div class="icon">
                 <i class="fa fa-sitemap" aria-hidden="true"></i>
               </div>
-              <a href="" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
+              <a href="{{route('classification')}}" class="small-box-footer" style="border-radius:20px;"><i class="fas fa-arrow-circle-right"></i> Show list</a>
             </div>
         </div>
 
@@ -90,7 +89,7 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-secondary" style="border-radius:20px;">
               <div class="inner">
-                <h3>{{$blood_count}}</h3>
+                <h3>{{number_format($blood_count)}}</h3>
 
                 <p>Blood Type</p>
               </div>
