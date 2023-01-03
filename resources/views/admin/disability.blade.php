@@ -106,8 +106,11 @@ Disability List
                             @endforeach
                         </td>
                         <td>
-                            <a href="" class="btn btn-secondary"><i class="fa fa-pencil-alt" aria-hidden="true"></i> </a>
-                            <a href="" class="btn btn-danger"><i class="fa fa-trash-alt" aria-hidden="true"></i> </a>
+                            <a href="{{route('disability.edit',$data->id)}}" class="btn btn-secondary"><i class="fa fa-pencil-alt" aria-hidden="true"></i> </a>
+                            <a href="" class="btn btn-danger" 
+                                id="{{$data->id}}"
+                                data-toggle="modal" 
+                                data-target="#deleteModal"><i class="fa fa-trash-alt" aria-hidden="true"></i> </a>
                         </td>
                     </tr>
                     @endforeach
@@ -143,7 +146,7 @@ Disability List
                     <div class="form-group">
                         <label>Type of Disability :</label>
                         <div class="select2-primary">
-                            <select class="select2 select2-hidden-accessible" name="type[]" multiple="" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            <select class="select2 select2-hidden-accessible" name="type[]" multiple="" data-placeholder="Select type of disability" data-dropdown-css-class="select2-purple" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                 <option value="Deaf or Hard of Hearing">Deaf or Hard of Hearing</option>
                                 <option value="Intelectual Disability">Intelectual Disability</option>
                                 <option value="Learning Disability">Learning Disability</option>
@@ -160,7 +163,7 @@ Disability List
                     <div class="form-group">
                         <label>Cause of Disability :</label>
                         <div class="select2-primary">
-                            <select class="select2 select2-hidden-accessible" name="cause[]" multiple="" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            <select class="select2 select2-hidden-accessible" name="cause[]" multiple="" data-placeholder="Select cause of disability" data-dropdown-css-class="select2-purple" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                 <option value="Acquired">Acquired</option>
                                 <option value="Cancer">Cancer</option>
                                 <option value="Chronic Illness">Chronic Illness</option>
@@ -178,6 +181,36 @@ Disability List
                 <button type="submit" class="btn btn-primary .btn-md"> Submit</button>
             </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete -->
+<div class="modal fade mt-5" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md mt-5" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center mt-3">
+            <i class="animation__shake fa fa-6x fa-exclamation-circle text-warning" aria-hidden="true"></i>
+                <div class="card-body" id="viewInfo">
+                    <div class="form-group">
+                        <h3><b>Are you sure?</b></h3>
+                        <h6>You won't be able to revert this!</h6>
+                    </div>
+                    <form action="{{route('disability.destroy')}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <div class="form-group" id="delData">
+                            <input type="hidden" name="_id">
+                            <div class="justiy-content-center">
+                                <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Yes, delete it!</button>
+                                <a class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -210,6 +243,13 @@ $(function () {
     $("#list_item").DataTable({
     "responsive": true, "lengthChange": true, "autoWidth": false,
     });
+});
+</script>
+<script>
+$('#deleteModal').on('show.bs.modal', function (e) {
+    var opener=e.relatedTarget;
+    var id=$(opener).attr('id');
+    $('#delData').find('[name="_id"]').val(id);
 });
 </script>
 @endpush

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barangay;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,9 @@ class HomeController extends Controller
     public function adminHome()
     {
         $brgy_count = Barangay::count();
-        return view('adminHome',compact('brgy_count'));
+        $admin_count = User::where('type', 1)->count();
+        $pwd_count = User::where('type', 0)->count();
+        $blood_count = User::where('blood_type', '<>', 'N/A')->count();
+        return view('adminHome',compact('brgy_count','pwd_count','admin_count','blood_count'));
     }
 }
