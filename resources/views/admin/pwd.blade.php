@@ -42,7 +42,7 @@ PWD List
                         <td>{{\Carbon\Carbon::parse($data->birthdate)->diff(\Carbon\Carbon::now())->format('%y years old')}}</td>
                         <td>{{$data->civil_status}}</td>
                         <td>
-                            <a href="" class="btn btn-primary mt-1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a href="{{route('pwd.show',$data->id)}}" class="btn btn-primary mt-1"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a href="" class="btn btn-success mt-1"><i class="fa fa-comments" aria-hidden="true"></i></a>
                             <a href="" class="btn btn-info mt-1"><i class="fa fa-id-card" aria-hidden="true"></i></a>
                         </td>

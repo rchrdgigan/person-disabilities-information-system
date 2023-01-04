@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('disability')}}" class="text-white nav-link {{!request()->routeIs('disability') ? : 'active'}}">
+                <a href="{{route('disability')}}" class="text-white nav-link {{!request()->routeIs('disability') && !request()->routeIs('disability.edit') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     Disability Type
@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('bloodtype')}}" class="text-white nav-link {{!request()->routeIs('bloodtype') ? : 'active'}}">
+                <a href="{{route('bloodtype')}}" class="text-white nav-link {{!request()->routeIs('bloodtype') && !request()->routeIs('bloodtype.edit') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     Blood Type
@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('classification')}}" class="text-white nav-link {{!request()->routeIs('classification') ? : 'active'}}">
+                <a href="{{route('classification')}}" class="text-white nav-link {{!request()->routeIs('classification') && !request()->routeIs('classification.edit') ? : 'active'}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                     Classification

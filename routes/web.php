@@ -54,5 +54,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::delete('/admin/classification/destroy', [ClassificationController::class, 'destroy'])->name('classification.destroy');
 
     Route::get('/admin/pwd', [PwdController::class, 'listPWD'])->name('pwd');
+    Route::get('/admin/pwd/show/{id}', [PwdController::class, 'show'])->name('pwd.show');
+    
     Route::get('/admin/message', [SmsNotificationController::class, 'listMessage'])->name('message');
 });
