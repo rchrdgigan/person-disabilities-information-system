@@ -88,7 +88,7 @@ Disability List
                 <tbody>
                     @foreach($pwd_disability as $data)
                     <tr>
-                        <td>{{$data->user->fullname}}</td>
+                        <td>{{$data->user->fullname}} {{($data->user->sufix == 'N/A') ? '': $data->user->sufix}}</td>
                         <td>
                             @foreach($data->type as $types)
                                 <span class="bg-primary p-1 rounded">{{$types}}</span>

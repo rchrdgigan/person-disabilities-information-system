@@ -35,16 +35,16 @@ PWD List
                 <tbody>
                     @foreach($users as $data)
                     <tr>
-                        <td>{{$data->first_name.' '.$data->middle_name.' '.$data->last_name}} {{($data->sufix == 'N/A') ? '':$data->sufix}}</td>
+                        <td>{{$data->fullname}} {{($data->sufix == 'N/A') ? '':$data->sufix}}</td>
                         <td>{{$data->street}}, {{$data->barangay->brgy}}, {{$data->municipality}}, {{$data->province}}</td>
                         <td>{{$data->gender}}</td>
-                        <td>{{$data->gender}}</td>
                         <td>{{\Carbon\Carbon::parse($data->birthdate)->diff(\Carbon\Carbon::now())->format('%y years old')}}</td>
+                        <td>{{\Carbon\Carbon::parse($data->birthdate)->format('%y years old')}}</td>
                         <td>{{$data->civil_status}}</td>
                         <td>
                             <a href="{{route('pwd.show',$data->id)}}" class="btn btn-primary mt-1"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a href="" class="btn btn-success mt-1"><i class="fa fa-comments" aria-hidden="true"></i></a>
-                            <a href="" class="btn btn-info mt-1"><i class="fa fa-id-card" aria-hidden="true"></i></a>
+                            <a href="{{url('/gen-id-pdf')}}" class="btn btn-info mt-1"><i class="fa fa-id-card" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     @endforeach

@@ -74,7 +74,7 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-green" style="border-radius:20px;">
               <div class="inner">
-                <h3>0</h3>
+                <h3>{{$classification_count}}</h3>
 
                 <p>Classification of PWD</p>
               </div>
