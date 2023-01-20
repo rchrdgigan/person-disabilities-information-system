@@ -14,118 +14,7 @@ Blood Type List
 
 @section('content')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-pink">
-                <div class="inner">
-                    <h3>A+</h3>
-
-                    <p>{{number_format($aplus)}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3>A-</h3>
-
-                    <p>{{number_format($aminus)}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-secondary">
-                <div class="inner">
-                    <h3>AB+</h3>
-
-                    <p>{{number_format($abplus)}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-purple">
-                <div class="inner">
-                    <h3>AB-</h3>
-
-                    <p>{{number_format($abminus)}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3>B+</h3>
-                    <p>{{number_format($bplus)}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3>B-</h3>
-
-                    <p>{{number_format($bminus)}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-                <div class="inner">
-                    <h3>O+</h3>
-
-                    <p>{{number_format($oplus)}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-teal">
-                <div class="inner">
-                    <h3>O-</h3>
-
-                    <p>{{number_format($ominus)}}</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="row">
         <div class="col-12">
@@ -183,7 +72,118 @@ Blood Type List
         <div class="card-header bg-primary">
           <h3 class="card-title">Blood Type List</h3>
         </div>
+        <div class="row p-3">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-pink">
+                    <div class="inner">
+                        <h3>A+</h3>
 
+                        <p>{{number_format($aplus)}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>A-</h3>
+
+                        <p>{{number_format($aminus)}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-secondary">
+                    <div class="inner">
+                        <h3>AB+</h3>
+
+                        <p>{{number_format($abplus)}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-purple">
+                    <div class="inner">
+                        <h3>AB-</h3>
+
+                        <p>{{number_format($abminus)}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>B+</h3>
+                        <p>{{number_format($bplus)}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>B-</h3>
+
+                        <p>{{number_format($bminus)}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>O+</h3>
+
+                        <p>{{number_format($oplus)}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-teal">
+                    <div class="inner">
+                        <h3>O-</h3>
+
+                        <p>{{number_format($ominus)}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card-body">
             <table id="list_item" class="table table-bordered table-striped">
                 <thead>
@@ -196,7 +196,7 @@ Blood Type List
                 <tbody>
                     @foreach($users as $data)
                     <tr>
-                        <td>{{$data->first_name.' '.$data->middle_name.' '.$data->last_name}}</td>
+                        <td>{{$data->fullname}} {{($data->sufix == 'N/A') ? '': $data->sufix}}</td>
                         <td>{{$data->blood_type}}</td>
                         <td>
                             <a href="{{route('bloodtype.edit',$data->id)}}" class="btn btn-secondary"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>

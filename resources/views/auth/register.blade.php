@@ -56,7 +56,10 @@
                         <div class="form-group row mb-1">
                             <label for="sufix" class="col-md-4 col-form-label text-md-end">Sufix </label>
                             <div class="col-md-6">
-                                <select class="form-select" name="sufix" id="sufix" required>
+                                <select class="form-select @error('sufix') is-invalid @enderror" name="sufix" id="sufix">
+                                    @if(old('sufix'))
+                                        <option selected value="{{old('sufix')}}">{{old('sufix')}}</option> 
+                                    @endif
                                     <option value="">Please select</option>
                                     <option value="N/A">Not Applicable</option>
                                     <option value="Jr.">Jr.</option>
@@ -102,7 +105,10 @@
                         <div class="form-group row mb-1">
                             <label for="gender" class="col-md-4 col-form-label text-md-end">Gender </label>
                             <div class="col-md-6">
-                                <select class="form-select" name="gender" id="gender" required>
+                                <select class="form-select @error('gender') is-invalid @enderror" name="gender" id="gender">
+                                    @if(old('gender'))
+                                        <option selected value="{{old('gender')}}">{{old('gender')}}</option> 
+                                    @endif
                                     <option value="">Please select</option>    
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -118,7 +124,10 @@
                         <div class="row mb-1">
                             <label for="civil_status" class="col-md-4 col-form-label text-md-end">Civil Status </label>
                             <div class="col-md-6">
-                                <select class="form-select" name="civil_status" id="civil_status" required>
+                                <select class="form-select @error('civil_status') is-invalid @enderror" name="civil_status" id="civil_status">
+                                    @if(old('civil_status'))
+                                    <option selected value="{{old('civil_status')}}">{{old('civil_status')}}</option> 
+                                    @endif
                                     <option value="">Please select</option>  
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
@@ -280,7 +289,10 @@
                         <div class="form-group row mb-1">
                             <label for="educ_attain" class="col-md-4 col-form-label text-md-end">Educational Attainment</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="educ_attain" id="educ_attain" required>
+                                <select class="form-select @error('educ_attain') is-invalid @enderror" name="educ_attain" id="educ_attain" required>
+                                    @if(old('educ_attain'))
+                                        <option selected value="{{old('educ_attain')}}">{{old('educ_attain')}}</option> 
+                                    @endif
                                     <option value="">Please select</option>    
                                     <option value="None">None</option>
                                     <option value="Elementary Education">Elementary Education</option>
@@ -301,7 +313,10 @@
                         <div class="form-group row mb-1">
                             <label for="emp_stat" class="col-md-4 col-form-label text-md-end">Status of Employment</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="emp_stat" id="emp_stat" required>
+                                <select class="form-select @error('emp_stat') is-invalid @enderror" name="emp_stat" id="emp_stat" required>
+                                    @if(old('emp_stat'))
+                                        <option selected value="{{old('emp_stat')}}">{{old('emp_stat')}}</option> 
+                                    @endif
                                     <option value="">Please select</option>    
                                     <option value="None">None</option>
                                     <option value="Employed">Employed</option>
@@ -319,7 +334,10 @@
                         <div class="form-group row mb-1">
                             <label for="emp_stat_cat" class="col-md-4 col-form-label text-md-end">Category of Employment</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="emp_stat_cat" id="emp_stat_cat" required>
+                                <select class="form-select @error('emp_stat_cat') is-invalid @enderror" name="emp_stat_cat" id="emp_stat_cat" required>
+                                    @if(old('emp_stat_cat'))
+                                        <option selected value="{{old('emp_stat_cat')}}">{{old('emp_stat_cat')}}</option> 
+                                    @endif
                                     <option value="">Please select</option>    
                                     <option value="None">None</option>
                                     <option value="Government">Government</option>
@@ -336,7 +354,10 @@
                         <div class="form-group row mb-1">
                             <label for="emp_stat_type" class="col-md-4 col-form-label text-md-end">Types of Employment</label>
                             <div class="col-md-6">
-                                <select class="form-select" name="emp_stat_type" id="emp_stat_type" required>
+                                <select class="form-select @error('emp_stat_type') is-invalid @enderror" name="emp_stat_type" id="emp_stat_type" required>
+                                    @if(old('emp_stat_type'))
+                                        <option selected value="{{old('emp_stat_type')}}">{{old('emp_stat_type')}}</option> 
+                                    @endif
                                     <option value="">Please select</option>  
                                     <option value="None">None</option>  
                                     <option value="Permanent/Regular">Permanent/Regular</option>
@@ -370,6 +391,9 @@
                             <label for="blood_type" class="col-md-4 col-form-label text-md-end">Blood Type</label>
                             <div class="col-md-6">
                                 <select class="form-select" name="blood_type" id="blood_type" required>
+                                    @if(old('blood_type'))
+                                        <option selected value="{{old('blood_type')}}">{{old('blood_type')}}</option> 
+                                    @endif
                                     <option value="">Please select</option>
                                     <option value="N/A">Not Available</option>
                                     <option value="A+">A+</option>

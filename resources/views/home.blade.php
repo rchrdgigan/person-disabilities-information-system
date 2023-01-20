@@ -49,7 +49,7 @@
             <div class="card">
                 <div class="row">   
                     <div class="col-12">
-                        <a href="" class="btn btn-secondary text-white btn-block m-2"><i class="fa fa-download" aria-hidden="true"></i> Generate Application Form</a>
+                        <a href="{{url('/af-pwd-pdf')}}" class="btn btn-secondary text-white btn-block m-2"><i class="fa fa-download" aria-hidden="true"></i> Generate Application Form</a>
                     </div>
                 </div>
                 

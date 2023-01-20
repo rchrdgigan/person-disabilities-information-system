@@ -81,7 +81,7 @@ Classification List
                 <tbody>
                     @foreach($pwd_classification as $data)
                     <tr>
-                        <td>{{$data->user->fullname}}</td>
+                        <td>{{$data->user->fullname}} {{($data->user->sufix == 'N/A') ? '': $data->user->sufix}}</td>
                         <td>{{$data->classification}}</td>
                         <td>
                             <a href="{{route('classification.edit',$data->id)}}" class="btn btn-secondary"><i class="fa fa-pencil-alt" aria-hidden="true"></i> </a>
