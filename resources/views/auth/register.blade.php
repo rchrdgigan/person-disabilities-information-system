@@ -377,8 +377,22 @@
                             <label for="occupation" class="col-md-4 col-form-label text-md-end">{{ __('Occupation (Optional)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="occupation" type="text" class="form-control @error('occupation') is-invalid @enderror" name="occupation" value="{{ old('occupation') }}" autocomplete="occupation" autofocus>
-
+                                <select class="form-select @error('occupation') is-invalid @enderror" name="occupation" id="occupation" required>
+                                    @if(old('occupation'))
+                                        <option selected value="{{old('occupation')}}">{{old('occupation')}}</option> 
+                                    @endif
+                                    <option value="">Please select</option>  
+                                    <option value="Managers">Managers</option>  
+                                    <option value="Professionals">Professionals</option>
+                                    <option value="Technician And Associate Professionals">Technician And Associate Professionals</option>
+                                    <option value="Service and Sales Workers">Service and Sales Workers</option>
+                                    <option value="Skilled Agricultural, Forestry and Fishery Workers">Skilled Agricultural, Forestry and Fishery Workers</option>
+                                    <option value="Craft and Related Trade Workers">Craft and Related Trade Workers</option>
+                                    <option value="Plant and Machine Operators and Assemblers">Plant and Machine Operators and Assemblers</option>
+                                    <option value="Elementary Occupations">Elementary Occupations</option>
+                                    <option value="Armed Forces Occupations">Armed Forces Occupations</option>
+                                    <option value="Other">Other, specify</option>
+                                </select>
                                 @error('occupation')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -62,6 +62,7 @@ Route::get('/af-pwd-pdf', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
 
     $fpdf->Text(193.5, 69.5, "X"); //O+
     $fpdf->Text(194, 76, "X"); //O-
+    
     //Disability
     $fpdf->Text(22.5, 85.5, "X");
     $fpdf->Text(22.5, 90, "X");
@@ -92,7 +93,62 @@ Route::get('/af-pwd-pdf', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
     $fpdf->Text(95, 134, "pwd->contact");
     $fpdf->Text(168, 134, "pwd->email");
     //Educ Att.
-    $fpdf->Text(172, 125, "pwd->id_ref");
+    $fpdf->Text(18, 144, "X");
+    $fpdf->Text(18, 148.5, "X");
+    $fpdf->Text(18, 153, "X");
+    $fpdf->Text(18, 157.5, "X");
+    $fpdf->Text(18, 162, "X");
+    $fpdf->Text(18, 166.5, "X");
+    $fpdf->Text(18, 171, "X");
+    //Emp Stat
+    $fpdf->Text(81, 144, "X");
+    $fpdf->Text(81, 148.5, "X");
+    $fpdf->Text(81, 153, "X");
+    //Category Emp
+    $fpdf->Text(81, 175.5, "X");
+    $fpdf->Text(81, 179.5, "X");
+    //Emp type
+    $fpdf->Text(81, 195.5, "X");
+    $fpdf->Text(81, 200, "X");
+    $fpdf->Text(81, 204.5, "X");
+    $fpdf->Text(81, 209, "X");
+    $fpdf->Text(113.5, 209, "X");
+    //Occupation
+    $fpdf->Text(149, 144, "X");
+    $fpdf->Text(149, 148.5, "X");
+    $fpdf->Text(149, 153, "X");
+    $fpdf->Text(149, 162, "X");
+    $fpdf->Text(149, 166.5, "X");
+    $fpdf->Text(149, 171, "X");
+    $fpdf->Text(149, 180, "X");
+    $fpdf->Text(149, 189, "X");
+    $fpdf->Text(149, 198, "X");
+    $fpdf->Text(149, 202.5, "X");
+    $fpdf->Text(149, 207, "X");
+    $fpdf->Text(154, 211, "pwd->other_occupation");
+    //Organization Info
+    $fpdf->Text(15, 223.5, "pwd->organization_affiliated");
+    $fpdf->Text(62, 223.5, "pwd->contact_person");
+    $fpdf->Text(112, 223.5, "pwd->office_address");
+    $fpdf->Text(160, 223.5, "pwd->tell_number");
+    //ID REF
+    $fpdf->Text(62, 228, "pwd->id_number.'-'.pwd->type_id");
+    $fpdf->Text(15, 234.5, "pwd->sss");
+    $fpdf->Text(62, 234.5, "pwd->gsis");
+    $fpdf->Text(112, 234.5, "pwd->pagibig");
+    $fpdf->Text(160, 234.5, "pwd->philhealth");
+    //Father
+    $fpdf->Text(80, 243.5, "pwd->f_lname");
+    $fpdf->Text(125, 243.5, "pwd->f_fname");
+    $fpdf->Text(170, 243.5, "pwd->f_mname");
+    //Mother
+    $fpdf->Text(80, 248.5, "pwd->m_lname");
+    $fpdf->Text(125, 248.5, "pwd->m_fname");
+    $fpdf->Text(170, 248.5, "pwd->m_mname");
+    //Guardian
+    $fpdf->Text(80, 253.5, "pwd->g_lname");
+    $fpdf->Text(125, 253.5, "pwd->g_fname");
+    $fpdf->Text(170, 253.5, "pwd->g_mname");
 
     $fpdf->Output( 'I' ,'Application Form'. ' - '."pwd->lastname".', '. "pwd->firstname".'.pdf');
 
