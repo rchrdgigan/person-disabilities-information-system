@@ -1,5 +1,7 @@
 @extends('layouts.app')
+@push('links')
 
+@endpush
 @section('content')
 <div class="container mb-4">
 <form action="{{route('home.update.profile')}}" method="POST" enctype="multipart/form-data">
@@ -84,9 +86,7 @@
 
                                     <label for="sufix" class="pt-2 pb-1"><b>Sufix</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                         <select class="form-select" name="sufix" id="inputGroupSelect01" required>
                                             <option value="">Please select</option>
                                             <option {{(auth()->user()->sufix == "N/A") ? "selected" : ""}} value="N/A">Not Applicable</option>
@@ -132,9 +132,7 @@
                                 <div class="col-md-6 col-12">
                                     <label for="gender" class="pt-2 pb-1"><b>Gender</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                         <select class="form-select" name="gender" id="inputGroupSelect01" required>
                                             <option {{(auth()->user()->gender == "Male") ? "selected" : ""}} value="Male">Male</option>
                                             <option {{(auth()->user()->gender == "Female") ? "selected" : ""}} value="Female">Female</option>
@@ -150,9 +148,7 @@
                                 <div class="col-12">
                                     <label for="civil_status" class="pt-2 pb-1"><b>Civil Status</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                         <select class="form-select" name="civil_status" id="inputGroupSelect01" required>
                                             <option value="">Please select</option>  
                                             <option {{(auth()->user()->civil_status == "Single") ? "selected" : ""}} value="Single">Single</option>
@@ -179,9 +175,7 @@
                                 <div class="col-md-4 col-12">
                                     <label for="blood_type" class="pt-2 pb-1"><b>Blood Type</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                         <select class="form-select" name="blood_type" id="inputGroupSelect01" required>
                                             <option value="">Please select</option>    
                                             <option {{(auth()->user()->blood_type == "N/A") ? "selected" : ""}} value="N/A">Not Available</option> 
@@ -235,9 +229,7 @@
                                 <div class="col-md-4 col-12">
                                     <label for="barangay_id" class="pt-2 pb-1"><b>Brgy:</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="barangay_id">Options</label>
-                                        </div>
+                                       
                                         <select class="form-select" name="barangay_id" id="barangay_id" required>
                                             <option value="">Please select</option>   
                                             @foreach($brgy as $data)  
@@ -279,9 +271,7 @@
                                 <div class="col-md-6 col-12">
                                     <label for="educ_attain" class="pt-2 pb-1"><b>Educational Attainment</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                     
                                         <select class="form-select" name="educ_attain" id="inputGroupSelect01" required>
                                             <option value="">Please select</option>    
@@ -304,9 +294,7 @@
                                 <div class="col-md-6 col-12">
                                     <label for="emp_stat" class="pt-2 pb-1"><b>Status of Employment</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                         <select class="form-select" name="emp_stat" id="inputGroupSelect01" required>
                                             <option value="">Please select</option>    
                                             <option {{(auth()->user()->emp_stat == "None") ? "selected" : ""}} value="None">None</option>
@@ -325,9 +313,7 @@
                                 <div class="col-md-6 col-12">
                                     <label for="emp_stat_cat" class="pt-2 pb-1"><b>Category of Employment</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                         <select class="form-select" name="emp_stat_cat" id="inputGroupSelect01" required>
                                             <option value="">Please select</option>   
                                             <option {{(auth()->user()->emp_stat_cat == "None") ? "selected" : ""}} value="None">None</option>
@@ -345,9 +331,7 @@
                                 <div class="col-md-6 col-12">
                                     <label for="emp_stat_type" class="pt-2 pb-1"><b>Types of Employment (Optional)</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                         <select class="form-select" name="emp_stat_type" id="inputGroupSelect01" required>
                                             <option value="">Please select</option>   
                                             <option {{(auth()->user()->emp_stat_type == "None") ? "selected" : ""}} value="None">None</option>
@@ -366,10 +350,28 @@
 
                                 <div class="col-md-6 col-12">
                                     <label for="occupation" class="pt-2 pb-1"><b>Occupation</b></label>
-                                    <input id="occupation" name="occupation" value="{{auth()->user()->occupation}}" type="text" class="@error('occupation') is-invalid @enderror form-control" 
-                                            placeholder="Enter occupation">
+                                        <select class="form-select @error('occupation') is-invalid @enderror" name="occupation" onchange="ifOther();" id="occupation" required>
+                                            <option value="">Please select</option>  
+                                            <option {{(auth()->user()->occupation == "None") ? "selected" : ""}} value="None">None</option>
+                                            <option {{(auth()->user()->occupation == "Managers") ? "selected" : ""}} value="Managers">Managers</option>  
+                                            <option {{(auth()->user()->occupation == "Professionals") ? "selected" : ""}} value="Professionals">Professionals</option>
+                                            <option {{(auth()->user()->occupation == "Technician And Associate Professionals") ? "selected" : ""}} value="Technician And Associate Professionals">Technician And Associate Professionals</option>
+                                            <option {{(auth()->user()->occupation == "Service and Sales Workers") ? "selected" : ""}} value="Service and Sales Workers">Service and Sales Workers</option>
+                                            <option {{(auth()->user()->occupation == "Skilled Agricultural, Forestry and Fishery Workers") ? "selected" : ""}} value="Skilled Agricultural, Forestry and Fishery Workers">Skilled Agricultural, Forestry and Fishery Workers</option>
+                                            <option {{(auth()->user()->occupation == "Craft and Related Trade Workers") ? "selected" : ""}} value="Craft and Related Trade Workers">Craft and Related Trade Workers</option>
+                                            <option {{(auth()->user()->occupation == "Plant and Machine Operators and Assemblers") ? "selected" : ""}} value="Plant and Machine Operators and Assemblers">Plant and Machine Operators and Assemblers</option>
+                                            <option {{(auth()->user()->occupation == "Elementary Occupations") ? "selected" : ""}} value="Elementary Occupations">Elementary Occupations</option>
+                                            <option {{(auth()->user()->occupation == "Armed Forces Occupations") ? "selected" : ""}} value="Armed Forces Occupations">Armed Forces Occupations</option>
+                                            <option {{(auth()->user()->occupation == "Other") ? "selected" : ""}} value="Other">Other, specify</option>
+                                        </select>
                                 </div>
-
+                                <div id="if_other" style="{{(auth()->user()->occupation == "Other") ? "" : 'display:none;'}}">
+                                <div class="col-md-12">
+                                    <label for="other_occupation" class="pt-2 pb-1"><b>Other Occupation</b></label>
+                                    <input id="other_occupation" name="other_occupation" value="{{auth()->user()->other_occupation}}" type="text" class="@error('other_occupation') is-invalid @enderror form-control" 
+                                            placeholder="Enter other occupation">
+                                </div>
+                                </div>
                             </div>
                             <div class="text-end">
                                 <button class="btn btn-secondary text-white mt-3" type="submit"><i class="fa fa-floppy-disk" aria-hidden="true"></i> Save Info</button>
@@ -413,9 +415,7 @@
                                 <div class="col-md-6 col-12">
                                     <label for="id_ref" class="pt-2 pb-1"><b>ID Reference</b></label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                        </div>
+                                        
                                         <select class="form-select" name="id_ref" id="inputGroupSelect01">
                                             <option value="">Please select</option>    
                                             <option {{(auth()->user()->id_ref == "N/A") ? "selected" : ""}} value="N/A">Not Available</option> 
@@ -542,3 +542,17 @@
 
 
 @endsection
+@push('scripts')
+<script>
+    function ifOther(){
+        var selectedUser = document.getElementById("occupation").value;
+        if(selectedUser == "Other"){
+        document.getElementById("if_other").style.display = "block";
+        document.getElementById("other_occupation").required;
+        }else{
+        document.getElementById("if_other").style.display = "none";
+        document.getElementById("other_occupation").value = "";
+        }
+    }
+</script>
+@endpush

@@ -37,11 +37,13 @@ return new class extends Migration
             $table->string('emp_stat_cat')->nullable();
             $table->string('emp_stat_type')->nullable();
             $table->string('occupation')->nullable();
+            $table->string('other_occupation')->nullable();
             $table->string('blood_type')->nullable();
             $table->string('org_affi')->nullable();
             $table->string('cont_person')->nullable();
             $table->string('office_address')->nullable();
             $table->string('tel_no')->nullable();
+            $table->string('id_num')->nullable();
             $table->string('id_ref')->nullable();
             $table->string('sss_no')->nullable();
             $table->string('gis_no')->nullable();

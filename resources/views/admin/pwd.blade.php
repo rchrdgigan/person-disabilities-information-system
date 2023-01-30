@@ -39,7 +39,7 @@ PWD List
                         <td>{{$data->street}}, {{$data->barangay->brgy}}, {{$data->municipality}}, {{$data->province}}</td>
                         <td>{{$data->gender}}</td>
                         <td>{{\Carbon\Carbon::parse($data->birthdate)->diff(\Carbon\Carbon::now())->format('%y years old')}}</td>
-                        <td>{{\Carbon\Carbon::parse($data->birthdate)->format('%y years old')}}</td>
+                        <td>{{\Carbon\Carbon::parse($data->birthdate)->format('M d, Y')}}</td>
                         <td>{{$data->civil_status}}</td>
                         <td>
                             <a href="{{route('pwd.show',$data->id)}}" class="btn btn-primary mt-1"><i class="fa fa-eye" aria-hidden="true"></i></a>
