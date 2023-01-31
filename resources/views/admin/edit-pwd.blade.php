@@ -30,7 +30,7 @@ PWD Information
         <div class="row m-2">
             <div class="col-12 ">
                 <a href="{{route('pwd')}}" class="btn btn-secondary text-white"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
-                <a href="{{url('/af-pwd-pdf')}}" class="btn btn-secondary text-white float-right"><i class="fa fa-download" aria-hidden="true"></i> Generate Application Form</a>
+                <a href="{{route('pwd.genpdf', $user->id)}}" class="btn btn-secondary text-white float-right"><i class="fa fa-download" aria-hidden="true"></i> Generate Application Form</a>
             </div>
         </div>
         <div class="card-header p-2">
@@ -345,10 +345,29 @@ PWD Information
 
                         <div class="col-md-6 col-12">
                             <label for="occupation" class="pt-2 pb-1"><b>Occupation</b></label>
-                            <input id="occupation" name="occupation" value="{{$user->occupation}}" type="text" class="@error('occupation') is-invalid @enderror form-control" 
-                                    placeholder="Enter occupation">
+                            <select class="form-select @error('occupation') is-invalid @enderror" name="occupation" onchange="ifOther();" id="occupation" required>
+                                    <option value="">Please select</option>  
+                                    <option {{$user->occupation == "None") ? "selected" : ""}} value="None">None</option>
+                                    <option {{$user->occupation == "Managers") ? "selected" : ""}} value="Managers">Managers</option>  
+                                    <option {{$user->occupation == "Professionals") ? "selected" : ""}} value="Professionals">Professionals</option>
+                                    <option {{$user->occupation == "Clerical Support Workers") ? "selected" : ""}} value="Clerical Support Workers">Clerical Support Workers</option>
+                                    <option {{$user->occupation == "Technician And Associate Professionals") ? "selected" : ""}} value="Technician And Associate Professionals">Technician And Associate Professionals</option>
+                                    <option {{$user->occupation == "Service and Sales Workers") ? "selected" : ""}} value="Service and Sales Workers">Service and Sales Workers</option>
+                                    <option {{$user->occupation == "Skilled Agricultural, Forestry and Fishery Workers") ? "selected" : ""}} value="Skilled Agricultural, Forestry and Fishery Workers">Skilled Agricultural, Forestry and Fishery Workers</option>
+                                    <option {{$user->occupation == "Craft and Related Trade Workers") ? "selected" : ""}} value="Craft and Related Trade Workers">Craft and Related Trade Workers</option>
+                                    <option {{$user->occupation == "Plant and Machine Operators and Assemblers") ? "selected" : ""}} value="Plant and Machine Operators and Assemblers">Plant and Machine Operators and Assemblers</option>
+                                    <option {{$user->occupation == "Elementary Occupations") ? "selected" : ""}} value="Elementary Occupations">Elementary Occupations</option>
+                                    <option {{$user->occupation == "Armed Forces Occupations") ? "selected" : ""}} value="Armed Forces Occupations">Armed Forces Occupations</option>
+                                    <option {{$user->occupation == "Other") ? "selected" : ""}} value="Other">Other, specify</option>
+                                </select>
                         </div>
-
+                        <div id="if_other" style="{{$user->occupation == "Other") ? "" : 'display:none;'}}">
+                        <div class="col-md-12">
+                            <label for="other_occupation" class="pt-2 pb-1"><b>Other Occupation</b></label>
+                            <input id="other_occupation" name="other_occupation" value="{{auth()->user()->other_occupation}}" type="text" class="@error('other_occupation') is-invalid @enderror form-control" 
+                                    placeholder="Enter other occupation">
+                        </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -393,15 +412,15 @@ PWD Information
                                 <select class="form-control" name="id_ref" id="inputGroupSelect01">
                                     <option value="">Please select</option>    
                                     <option {{($user->id_ref == "N/A") ? "selected" : ""}} value="N/A">Not Available</option> 
-                                    <option {{($user->id_ref == "passport") ? "selected" : ""}} value="passport">Passport ID</option>
-                                    <option {{($user->id_ref == "driverlicense") ? "selected" : ""}} value="driverlicense">Driver's License</option>
-                                    <option {{($user->id_ref == "companyid") ? "selected" : ""}} value="companyid">Company ID</option>
-                                    <option {{($user->id_ref == "schoolid") ? "selected" : ""}} value="schoolid">School ID</option>
-                                    <option {{($user->id_ref == "postal") ? "selected" : ""}} value="postal-">Postal ID</option>
-                                    <option {{($user->id_ref == "umpid") ? "selected" : ""}} value="umpid">Unified Multi-Purpose ID</option>
-                                    <option {{($user->id_ref == "voters") ? "selected" : ""}} value="voters">Voter's ID</option>
-                                    <option {{($user->id_ref == "prc") ? "selected" : ""}} value="prc">PRC ID</option>
-                                    <option {{($user->id_ref == "birthcertificate") ? "selected" : ""}} value="birthcertificate">Birth Certificate</option>
+                                    <option {{($user->id_ref == "Passport ID") ? "selected" : ""}} value="Passport ID">Passport ID</option>
+                                    <option {{($user->id_ref == "Driver's License") ? "selected" : ""}} value="Driver's License">Driver's License</option>
+                                    <option {{($user->id_ref == "Company ID") ? "selected" : ""}} value="Company ID">Company ID</option>
+                                    <option {{($user->id_ref == "School ID") ? "selected" : ""}} value="School ID">School ID</option>
+                                    <option {{($user->id_ref == "Postal ID") ? "selected" : ""}} value="Postal ID-">Postal ID</option>
+                                    <option {{($user->id_ref == "Unified Multi-Purpose ID") ? "selected" : ""}} value="Unified Multi-Purpose ID">Unified Multi-Purpose ID</option>
+                                    <option {{($user->id_ref == "Voter's ID<") ? "selected" : ""}} value="Voter's ID<">Voter's ID</option>
+                                    <option {{($user->id_ref == "PRC ID") ? "selected" : ""}} value="PRC ID">PRC ID</option>
+                                    <option {{($user->id_ref == "Birth Certificate") ? "selected" : ""}} value="Birth Certificate">Birth Certificate</option>
                                 </select>
                                 @error('id_ref')
                                     <span class="invalid-feedback" role="alert">
@@ -513,13 +532,24 @@ PWD Information
 @endsection
 @push('scripts')
 <script>
-$(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2();
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-        theme: 'bootstrap4',
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4',
+        });
     });
-});
+
+    function ifOther(){
+        var selectedUser = document.getElementById("occupation").value;
+        if(selectedUser == "Other"){
+        document.getElementById("if_other").style.display = "block";
+        document.getElementById("other_occupation").required;
+        }else{
+        document.getElementById("if_other").style.display = "none";
+        document.getElementById("other_occupation").value = "";
+        }
+    }
 </script>
 @endpush
