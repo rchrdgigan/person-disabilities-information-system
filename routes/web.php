@@ -25,21 +25,6 @@ Route::get('/register', function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/gen-id-pdf', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
-
-    $form = "./ID.png";
-    $fpdf->SetFont('Arial', '', 9);
-    $fpdf->AddPage('P', 'Letter');
-    $fpdf->SetTitle('Identification Information'. ' - '. "pwd->firstname". ' '."pwd->lastname" );            
-    $fpdf->Image($form, 0, 0, 216, 280);
-
-
-    $fpdf->Output( 'I' ,'Application Form'. ' - '."pwd->lastname".', '. "pwd->firstname".'.pdf');
-
-    exit;
-
-});
-
 Route::middleware(['auth', 'user-access:user'])->group(function () {
   
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -73,6 +58,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/pwd/show/{id}', [PwdController::class, 'show'])->name('pwd.show');
     Route::put('admin/pwd/update/{id}', [PwdController::class, 'updatePwd'])->name('pwd.update');
     Route::get('/admin/pwd/genpdf/{id}', [PwdController::class, 'generatePWD'])->name('pwd.genpdf');
+    Route::get('/admin/pwd/genid/{id}', [PwdController::class, 'generateID'])->name('pwd.genid');
     
     Route::get('/admin/message', [SmsNotificationController::class, 'listMessage'])->name('message');
 });

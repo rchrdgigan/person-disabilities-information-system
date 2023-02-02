@@ -188,6 +188,7 @@ Blood Type List
             <table id="list_item" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        <th>Unique ID</th>
                         <th>PWD Name</th>
                         <th>Blood Type</th>
                         <th>Action</th>
@@ -196,6 +197,7 @@ Blood Type List
                 <tbody>
                     @foreach($users as $data)
                     <tr>
+                        <td>{{Carbon\Carbon::now()->format('y')}}-{{str_pad($data->id, 5, '0', STR_PAD_LEFT)}}</td>
                         <td>{{$data->fullname}} {{($data->sufix == 'N/A') ? '': $data->sufix}}</td>
                         <td>{{$data->blood_type}}</td>
                         <td>

@@ -23,6 +23,7 @@ PWD List
             <table id="list_item" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                    <th>Unique ID</th>
                     <th>Name</th>
                     <th>Address</th>
                     <th>Sex</th>
@@ -35,6 +36,7 @@ PWD List
                 <tbody>
                     @foreach($users as $data)
                     <tr>
+                        <td>{{Carbon\Carbon::now()->format('y')}}-{{str_pad($data->id, 5, '0', STR_PAD_LEFT)}}</td>
                         <td>{{$data->fullname}} {{($data->sufix == 'N/A') ? '':$data->sufix}}</td>
                         <td>{{$data->street}}, {{$data->barangay->brgy}}, {{$data->municipality}}, {{$data->province}}</td>
                         <td>{{$data->gender}}</td>
@@ -44,7 +46,7 @@ PWD List
                         <td>
                             <a href="{{route('pwd.show',$data->id)}}" class="btn btn-primary mt-1"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a href="" class="btn btn-success mt-1"><i class="fa fa-comments" aria-hidden="true"></i></a>
-                            <a href="{{url('/gen-id-pdf')}}" class="btn btn-info mt-1"><i class="fa fa-id-card" aria-hidden="true"></i></a>
+                            <a href="{{route('pwd.genid',$data->id)}}" class="btn btn-info mt-1"><i class="fa fa-id-card" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     @endforeach

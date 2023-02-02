@@ -139,7 +139,10 @@ class PwdController extends Controller
             $fpdf->Text(15, 48, $pwd->last_name);
             $fpdf->Text(60, 48, $pwd->first_name);
             $fpdf->Text(105, 48, $pwd->middle_name);
-            $fpdf->Text(153, 48, $pwd->sufix);
+            if($pwd->sufix == "N/A"){
+            }else{
+                $fpdf->Text(153, 48, $pwd->sufix);
+            }
             $fpdf->Text(15, 60.5, Carbon::parse($pwd->birthdate)->format('M d, Y'));
             $fpdf->Text(62, 60, Carbon::parse($pwd->birthdate)->diff(Carbon::now())->format('%y years old'));
             $fpdf->Text(112, 60, $pwd->religion);
@@ -324,7 +327,7 @@ class PwdController extends Controller
                 $fpdf->Text(149, 202.5, "X");
             }else if($pwd->occupation == "Other"){
                 $fpdf->Text(149, 207, "X");
-                $fpdf->Text(154, 211, '$pwd->other_occupation');
+                $fpdf->Text(154, 211, $pwd->other_occupation);
             }
             //Organization Info
             $fpdf->Text(15, 223.5, $pwd->org_affi);
@@ -355,5 +358,80 @@ class PwdController extends Controller
             exit;
         }
         return abort(404);
+    }
+
+    public function generateID(Fpdf $fpdf,$id){
+        $brgy = Barangay::get();
+        $pwd = User::with('barangay')->where('type',false)->where('id',$id)->first();
+        if($pwd){
+            $form = "./ID.png";
+            $fpdf->SetFont('Arial', '', 7);
+            $fpdf->AddPage('P', 'Letter');
+            $fpdf->SetTitle('Identification Information'. ' - '. $pwd->first_name. ' '.$pwd->last_name );            
+            $fpdf->Image($form, 0, 0, 216, 280);
+            // $data->fullname ($data->sufix == 'N/A') ? '':$data->sufix
+            if($pwd->sufix == 'N/A'){
+                $fpdf->Text(80, 83, $pwd->fullname);
+            }else{
+                $fpdf->Text(80, 83, $pwd->fullname.' '.$pwd->sufix);
+            }
+            //Disability
+            $disablities = Disability::where('user_id', $id)->first();
+            $arr_type = ["Deaf or Hard of Hearing","Intelectual Disability","Learning Disability","Mental Disability","Orthopedic Disability","Physical Disability","Pyschosocial Disability","Speech and Language Impairment","Visual Disability"];
+            $i = -1;
+            foreach($arr_type as $data){
+                $i++;
+                if(isset($disablities->type[$i])){
+
+                    if($disablities->type[$i] == "Deaf or Hard of Hearing"){
+                        $val [] = 'Deaf';
+                    }
+                    if($disablities->type[$i] == "Intelectual Disability"){
+                        $val [] ='Intelectual';
+                    }
+                    if($disablities->type[$i] == "Learning Disability"){
+                        $val [] ='Learning';
+                    }
+                    if($disablities->type[$i] == "Mental Disability"){
+                        $val [] ="Mental";
+                    }
+                    if($disablities->type[$i] == "Orthopedic Disability"){
+                        $val [] ="Orthopedic";
+                    }
+
+                    if($disablities->type[$i] == "Physical Disability"){
+                        $val [] ="Physical";
+                    }
+                    if($disablities->type[$i] == "Pyschosocial Disability"){
+                        $val [] ="Pyschosocial";
+                    }
+                    if($disablities->type[$i] == "Speech and Language Impairment"){
+                        $val [] ="SLI";
+                    }
+                    if($disablities->type[$i] == "Visual Disability"){
+                        $val [] ="Visual";
+                    }
+                }
+            }
+            $fpdf->Text(80, 91, implode(",", array_slice($val, 0, 4)));
+
+            $fpdf->Text(125, 100, Carbon::now()->format('y').'-'.str_pad($pwd->id, 5, '0', STR_PAD_LEFT));
+
+            $brgy = Barangay::where('id', $pwd->barangay_id)->first();
+
+            $fpdf->Text(87, 158, "Brgy. ".$brgy->brgy.", Irosin, Sorsogon");
+
+            $fpdf->Text(92, 161, Carbon::parse($pwd->birthdate)->format('M d, Y'));
+
+            $fpdf->Text(134, 161, $pwd->gender);
+
+            $fpdf->Text(91, 164, Carbon::now()->format('M d, Y'));
+
+            $fpdf->Text(137, 164, $pwd->blood_type);
+
+            $fpdf->Output( 'I' ,'Application Form'. ' - '."pwd->lastname".', '. "pwd->firstname".'.pdf');
+
+            exit;
+        }
     }
 }

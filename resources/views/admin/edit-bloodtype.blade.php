@@ -21,7 +21,7 @@ User Bloodtype / Edit
                         <div class="form-group">
                             <label>Name of PWD :</label>
                             <select class="form-control select2bs4" disabled="true" style="width: 100%;">
-                                <option>{{$pwd->fullname}} {{($pwd->sufix == "N/A")? "" : $pwd->sufix}}</option>
+                                <option>{{Carbon\Carbon::now()->format('y')}}-{{str_pad($pwd->id, 5, '0', STR_PAD_LEFT)}} | {{$pwd->fullname}} {{($pwd->sufix == "N/A")? "" : $pwd->sufix}}</option>
                             </select>
                         </div>
                         

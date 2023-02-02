@@ -116,7 +116,7 @@ Classification List
                         <label>Name of PWD :</label>
                         <select class="form-control select2bs4" name="user_id" style="width: 100%;">
                         @foreach($pwd as $data)
-                            <option value="{{$data->id}}">{{$data->fullname}} {{($data->sufix == "N/A")? "" : $data->sufix}}</option>
+                            <option value="{{$data->id}}">{{Carbon\Carbon::now()->format('y')}}-{{str_pad($data->id, 5, '0', STR_PAD_LEFT)}} | {{$data->fullname}} {{($data->sufix == "N/A")? "" : $data->sufix}}</option>
                         @endforeach 
                         </select>
                     </div>
