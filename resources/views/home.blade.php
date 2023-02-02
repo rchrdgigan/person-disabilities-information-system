@@ -51,7 +51,7 @@
             <div class="card">
                 <div class="row">   
                     <div class="col-12">
-                        <a href="{{url('/af-pwd-pdf')}}" class="btn btn-secondary text-white btn-block m-2"><i class="fa fa-download" aria-hidden="true"></i> Generate Application Form</a>
+                        <a href="{{route('genpdf', auth()->user()->id)}}" class="btn btn-secondary text-white btn-block m-2"><i class="fa fa-download" aria-hidden="true"></i> Generate Application Form</a>
                     </div>
                 </div>
                 
@@ -355,6 +355,7 @@
                                             <option {{(auth()->user()->occupation == "None") ? "selected" : ""}} value="None">None</option>
                                             <option {{(auth()->user()->occupation == "Managers") ? "selected" : ""}} value="Managers">Managers</option>  
                                             <option {{(auth()->user()->occupation == "Professionals") ? "selected" : ""}} value="Professionals">Professionals</option>
+                                            <option {{(auth()->user()->occupation == "Clerical Support Workers") ? "selected" : ""}} value="Clerical Support Workers">Clerical Support Workers</option>
                                             <option {{(auth()->user()->occupation == "Technician And Associate Professionals") ? "selected" : ""}} value="Technician And Associate Professionals">Technician And Associate Professionals</option>
                                             <option {{(auth()->user()->occupation == "Service and Sales Workers") ? "selected" : ""}} value="Service and Sales Workers">Service and Sales Workers</option>
                                             <option {{(auth()->user()->occupation == "Skilled Agricultural, Forestry and Fishery Workers") ? "selected" : ""}} value="Skilled Agricultural, Forestry and Fishery Workers">Skilled Agricultural, Forestry and Fishery Workers</option>
@@ -419,15 +420,15 @@
                                         <select class="form-select" name="id_ref" id="inputGroupSelect01">
                                             <option value="">Please select</option>    
                                             <option {{(auth()->user()->id_ref == "N/A") ? "selected" : ""}} value="N/A">Not Available</option> 
-                                            <option {{(auth()->user()->id_ref == "passport") ? "selected" : ""}} value="passport">Passport ID</option>
-                                            <option {{(auth()->user()->id_ref == "driverlicense") ? "selected" : ""}} value="driverlicense">Driver's License</option>
-                                            <option {{(auth()->user()->id_ref == "companyid") ? "selected" : ""}} value="companyid">Company ID</option>
-                                            <option {{(auth()->user()->id_ref == "schoolid") ? "selected" : ""}} value="schoolid">School ID</option>
-                                            <option {{(auth()->user()->id_ref == "postal") ? "selected" : ""}} value="postal-">Postal ID</option>
-                                            <option {{(auth()->user()->id_ref == "umpid") ? "selected" : ""}} value="umpid">Unified Multi-Purpose ID</option>
-                                            <option {{(auth()->user()->id_ref == "voters") ? "selected" : ""}} value="voters">Voter's ID</option>
-                                            <option {{(auth()->user()->id_ref == "prc") ? "selected" : ""}} value="prc">PRC ID</option>
-                                            <option {{(auth()->user()->id_ref == "birthcertificate") ? "selected" : ""}} value="birthcertificate">Birth Certificate</option>
+                                            <option {{(auth()->user()->id_ref == "Passport ID") ? "selected" : ""}} value="Passport ID">Passport ID</option>
+                                            <option {{(auth()->user()->id_ref == "Driver's License") ? "selected" : ""}} value="Driver's License">Driver's License</option>
+                                            <option {{(auth()->user()->id_ref == "Company ID") ? "selected" : ""}} value="Company ID">Company ID</option>
+                                            <option {{(auth()->user()->id_ref == "School ID") ? "selected" : ""}} value="School ID">School ID</option>
+                                            <option {{(auth()->user()->id_ref == "Postal ID") ? "selected" : ""}} value="Postal ID">Postal ID</option>
+                                            <option {{(auth()->user()->id_ref == "Unified Multi-Purpose ID") ? "selected" : ""}} value="Unified Multi-Purpose ID">Unified Multi-Purpose ID</option>
+                                            <option {{(auth()->user()->id_ref == "Voter's ID") ? "selected" : ""}} value="Voter's ID">Voter's ID</option>
+                                            <option {{(auth()->user()->id_ref == "PRC ID") ? "selected" : ""}} value="PRC ID">PRC ID</option>
+                                            <option {{(auth()->user()->id_ref == "Birth Certificate") ? "selected" : ""}} value="Birth Certificate">Birth Certificate</option>
                                         </select>
                                         @error('id_ref')
                                             <span class="invalid-feedback" role="alert">
