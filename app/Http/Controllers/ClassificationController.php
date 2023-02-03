@@ -10,7 +10,7 @@ class ClassificationController extends Controller
 {
     public function listClassification(){
         $pwd = User::where('type',false)->orderBy('id','DESC')->get();
-        $pwd_classification = Classification::with('user')->orderBy('id','DESC')->get();
+        $pwd_classification = Classification::with('user')->where('is_archived',false)->orderBy('id','DESC')->get();
         return view('admin.classification', compact('pwd','pwd_classification'));
     }
     public function store(Request $request){
@@ -51,4 +51,18 @@ class ClassificationController extends Controller
         }
         return back()->with('message','Data has been deleted!');
     }
+    public function archive(Request $request){
+        $arc = Classification::findOrFail($request->_id);
+        if($arc){
+            $arc->is_archived = true;
+            $arc->update();
+        }
+        return back()->with('message','Data has been archived!');
+    }
+    public function archiveList(Request $request){
+        $pwd = User::where('type',false)->orderBy('id','DESC')->get();
+        $pwd_classification = Classification::with('user')->where('is_archived',true)->orderBy('id','DESC')->get();
+        return view('admin.classification-arc-list', compact('pwd','pwd_classification'));
+    }
+
 }

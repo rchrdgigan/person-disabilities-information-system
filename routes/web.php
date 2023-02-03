@@ -38,21 +38,25 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/admin/barangay', [BarangayController::class, 'listBarangay'])->name('barangay');
 
+    Route::get('/admin/disability/archive-list', [DisablityTypeController::class, 'archiveList'])->name('disability.arclist');
     Route::get('/admin/disability', [DisablityTypeController::class, 'listDisability'])->name('disability');
     Route::post('/admin/disability/store', [DisablityTypeController::class, 'store'])->name('disability.store');
     Route::get('/admin/disability/edit/{id}', [DisablityTypeController::class, 'edit'])->name('disability.edit');
     Route::put('/admin/disability/update/{id}', [DisablityTypeController::class, 'update'])->name('disability.update');
     Route::delete('/admin/disability/destroy', [DisablityTypeController::class, 'destroy'])->name('disability.destroy');
+    Route::put('/admin/disability/archive', [DisablityTypeController::class, 'archive'])->name('disability.archive');
 
     Route::get('/admin/bloodtype', [BloodTypeController::class, 'listBloodType'])->name('bloodtype');
     Route::get('/admin/bloodtype/edit/{id}', [BloodTypeController::class, 'editBloodType'])->name('bloodtype.edit');
     Route::put('/admin/bloodtype/update/{id}', [BloodTypeController::class, 'updateBloodType'])->name('bloodtype.update');
 
+    Route::get('/admin/classification/archive-list', [ClassificationController::class, 'archiveList'])->name('classification.arclist');
     Route::get('/admin/classification', [ClassificationController::class, 'listClassification'])->name('classification');
     Route::post('/admin/classification/store', [ClassificationController::class, 'store'])->name('classification.store');
     Route::get('/admin/classification/edit/{id}', [ClassificationController::class, 'edit'])->name('classification.edit');
     Route::put('/admin/classification/update/{id}', [ClassificationController::class, 'update'])->name('classification.update');
     Route::delete('/admin/classification/destroy', [ClassificationController::class, 'destroy'])->name('classification.destroy');
+    Route::put('/admin/classification/archive', [ClassificationController::class, 'archive'])->name('classification.archive');
 
     Route::get('/admin/pwd', [PwdController::class, 'listPWD'])->name('pwd');
     Route::get('/admin/pwd/show/{id}', [PwdController::class, 'show'])->name('pwd.show');

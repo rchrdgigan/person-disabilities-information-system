@@ -12,6 +12,7 @@ class Classification extends Model
     protected $fillable = [
         'user_id',
         'classification',
+        'is_archived',
     ];
 
     public function user(){

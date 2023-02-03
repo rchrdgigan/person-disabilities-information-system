@@ -13,6 +13,7 @@ class Disability extends Model
         'user_id',
         'type',
         'cause',
+        'is_archived',
     ];
     
     protected $casts = [

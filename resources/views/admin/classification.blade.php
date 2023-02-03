@@ -67,12 +67,14 @@ Classification List
             type="button"
             data-toggle="modal" 
             data-target="#addModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</button>
+            <a href="" class="btn btn-secondary mr-2 float-right" type="button"><i class="fa fa-eye" aria-hidden="true"></i> Archived</a>
         </div>
 
         <div class="card-body">
             <table id="list_item" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        <th>Unique Id</th>
                         <th>PWD Name</th>
                         <th>Classification</th>
                         <th>Action</th>
@@ -81,14 +83,15 @@ Classification List
                 <tbody>
                     @foreach($pwd_classification as $data)
                     <tr>
+                        <td>{{Carbon\Carbon::now()->format('y')}}-{{str_pad($data->id, 5, '0', STR_PAD_LEFT)}}</td>
                         <td>{{$data->user->fullname}} {{($data->user->sufix == 'N/A') ? '': $data->user->sufix}}</td>
                         <td>{{$data->classification}}</td>
                         <td>
                             <a href="{{route('classification.edit',$data->id)}}" class="btn btn-secondary"><i class="fa fa-pencil-alt" aria-hidden="true"></i> </a>
-                            <a href="" class="btn btn-danger" 
+                            <a href="" class="btn btn-info" 
                                 id="{{$data->id}}"
                                 data-toggle="modal" 
-                                data-target="#deleteModal"><i class="fa fa-trash-alt" aria-hidden="true"></i> </a>
+                                data-target="#arcModal"><i class="fa fa-archive" aria-hidden="true"></i> </a>
                         </td>
                     </tr>
                     @endforeach
@@ -136,25 +139,25 @@ Classification List
     </div>
 </div>
 
-<!-- Modal Delete -->
-<div class="modal fade mt-5" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Modal Archive -->
+<div class="modal fade mt-5" id="arcModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md mt-5" role="document">
         <div class="modal-content">
             <div class="modal-body text-center mt-3">
-            <i class="animation__shake fa fa-6x fa-exclamation-circle text-warning" aria-hidden="true"></i>
+            <i class="animation__shake fa fa-6x fa-question-circle text-info" aria-hidden="true"></i>
                 <div class="card-body" id="viewInfo">
                     <div class="form-group">
-                        <h3><b>Are you sure?</b></h3>
-                        <h6>You won't be able to revert this!</h6>
+                        <h3><b>Are you sure archiving this?</b></h3>
+                        <h6>It store temporarily and you can restore again tis data!</h6>
                     </div>
-                    <form action="{{route('classification.destroy')}}" method="post">
+                    <form action="{{route('classification.archive')}}" method="post">
                         @csrf
-                        @method('DELETE')
-                        <div class="form-group" id="delData">
+                        @method('PUT')
+                        <div class="form-group" id="arcData">
                             <input type="hidden" name="_id">
                             <div class="justiy-content-center">
                                 <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Yes, delete it!</button>
+                                <button type="submit" class="btn btn-primary">Yes, archive it!</button>
                                 <a class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</a>
                                 </div>
                             </div>
@@ -197,10 +200,10 @@ $(function () {
 });
 </script>
 <script>
-$('#deleteModal').on('show.bs.modal', function (e) {
+$('#arcModal').on('show.bs.modal', function (e) {
     var opener=e.relatedTarget;
     var id=$(opener).attr('id');
-    $('#delData').find('[name="_id"]').val(id);
+    $('#arcData').find('[name="_id"]').val(id);
 });
 </script>
 @endpush

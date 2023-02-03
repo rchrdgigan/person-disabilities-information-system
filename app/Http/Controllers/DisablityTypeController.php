@@ -10,7 +10,7 @@ class DisablityTypeController extends Controller
 {
     public function listDisability(){
         $pwd = User::where('type',false)->orderBy('id','DESC')->get();
-        $pwd_disability = Disability::with('user')->orderBy('id','DESC')->get();
+        $pwd_disability = Disability::with('user')->where('is_archived',false)->orderBy('id','DESC')->get();
         return view('admin.disability', compact('pwd','pwd_disability'));
     }
     public function store(Request $request){
@@ -70,5 +70,18 @@ class DisablityTypeController extends Controller
             $del->delete();
         }
         return back()->with('message','Data has been deleted!');
+    }
+    public function archive(Request $request){
+        $arc = Disability::findOrFail($request->_id);
+        if($arc){
+            $arc->is_archived = true;
+            $arc->update();
+        }
+        return back()->with('message','Data has been archived!');
+    }
+    public function archiveList(Request $request){
+        $pwd = User::where('type',false)->orderBy('id','DESC')->get();
+        $pwd_disability = Disability::with('user')->where('is_archived',true)->orderBy('id','DESC')->get();
+        return view('admin.disability', compact('pwd','pwd_disability'));
     }
 }
