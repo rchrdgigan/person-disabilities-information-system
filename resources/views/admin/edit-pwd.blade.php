@@ -334,6 +334,7 @@ PWD Information
                                     <option {{($user->emp_stat_type == "Seasonal") ? "selected" : ""}} value="Seasonal">Seasonal</option>
                                     <option {{($user->emp_stat_type == "Casual") ? "selected" : ""}} value="Casual">Casual</option>
                                     <option {{($user->emp_stat_type == "Emergency") ? "selected" : ""}} value="Emergency">Emergency</option>
+                                    <option {{($user->emp_stat_type == "Job-order") ? "selected" : ""}} value="Job-order">Job-order</option>
                                 </select>
                                 @error('emp_stat_type')
                                     <span class="invalid-feedback" role="alert">

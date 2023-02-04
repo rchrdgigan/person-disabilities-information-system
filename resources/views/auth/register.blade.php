@@ -366,6 +366,7 @@
                                             <option value="Seasonal">Seasonal</option>
                                             <option value="Casual">Casual</option>
                                             <option value="Emergency">Emergency</option>
+                                            <option value="Job-order">Job-order</option>
                                         </select>
                                     </div>
                                     @error('emp_stat_type')
@@ -379,7 +380,7 @@
                                     <label for="occupation"><b>{{ __('Occupation (Optional)') }}</b></label>
 
                                     <div class="col-md-12">
-                                        <select class="form-select @error('occupation') is-invalid @enderror" name="occupation" id="occupation" required>
+                                        <select class="form-select @error('occupation') is-invalid @enderror" name="occupation" onchange="ifOther();" id="occupation" required>
                                             @if(old('occupation'))
                                                 <option selected value="{{old('occupation')}}">{{old('occupation')}}</option> 
                                             @endif
@@ -403,17 +404,19 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-2">
-                                    <label for="other_occupation"><b>{{ __('Other Occupation') }}</b></label>
+                                <div id="if_other" style="display:none;">
+                                    <div class="form-group mb-2">
+                                        <label for="other_occupation"><b>{{ __('Other Occupation') }}</b></label>
 
-                                    <div class="col-md-12">
-                                        <input id="other_occupation" type="text" class="form-control @error('other_occupation') is-invalid @enderror" name="other_occupation" value="{{ old('other_occupation') }}" required autocomplete="other_occupation" autofocus>
+                                        <div class="col-md-12">
+                                            <input id="other_occupation" type="text" class="form-control @error('other_occupation') is-invalid @enderror" name="other_occupation" value="{{ old('other_occupation') }}" autocomplete="other_occupation" autofocus>
 
-                                        @error('other_occupation')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                            @error('other_occupation')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
@@ -494,3 +497,17 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+    function ifOther(){
+        var selectedUser = document.getElementById("occupation").value;
+        if(selectedUser == "Other"){
+        document.getElementById("if_other").style.display = "block";
+        document.getElementById("other_occupation").required;
+        }else{
+        document.getElementById("if_other").style.display = "none";
+        document.getElementById("other_occupation").value = "";
+        }
+    }
+</script>
+@endpush
