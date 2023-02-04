@@ -62,7 +62,15 @@ class ClassificationController extends Controller
     public function archiveList(Request $request){
         $pwd = User::where('type',false)->orderBy('id','DESC')->get();
         $pwd_classification = Classification::with('user')->where('is_archived',true)->orderBy('id','DESC')->get();
-        return view('admin.classification-arc-list', compact('pwd','pwd_classification'));
+        return view('admin.archived-classification', compact('pwd','pwd_classification'));
+    }
+    public function unarchive(Request $request){
+        $unarc = Classification::findOrFail($request->_id);
+        if($unarc){
+            $unarc->is_archived = false;
+            $unarc->update();
+        }
+        return back()->with('message','Data has been restored!');
     }
 
 }

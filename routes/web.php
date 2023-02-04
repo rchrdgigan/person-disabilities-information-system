@@ -45,6 +45,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::put('/admin/disability/update/{id}', [DisablityTypeController::class, 'update'])->name('disability.update');
     Route::delete('/admin/disability/destroy', [DisablityTypeController::class, 'destroy'])->name('disability.destroy');
     Route::put('/admin/disability/archive', [DisablityTypeController::class, 'archive'])->name('disability.archive');
+    Route::put('/admin/disability/unarchive', [DisablityTypeController::class, 'unarchive'])->name('disability.unarchive');
 
     Route::get('/admin/bloodtype', [BloodTypeController::class, 'listBloodType'])->name('bloodtype');
     Route::get('/admin/bloodtype/edit/{id}', [BloodTypeController::class, 'editBloodType'])->name('bloodtype.edit');
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::put('/admin/classification/update/{id}', [ClassificationController::class, 'update'])->name('classification.update');
     Route::delete('/admin/classification/destroy', [ClassificationController::class, 'destroy'])->name('classification.destroy');
     Route::put('/admin/classification/archive', [ClassificationController::class, 'archive'])->name('classification.archive');
+    Route::put('/admin/classification/unarchive', [ClassificationController::class, 'unarchive'])->name('classification.unarchive');
 
     Route::get('/admin/pwd', [PwdController::class, 'listPWD'])->name('pwd');
     Route::get('/admin/pwd/show/{id}', [PwdController::class, 'show'])->name('pwd.show');
@@ -65,4 +67,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/pwd/genid/{id}', [PwdController::class, 'generateID'])->name('pwd.genid');
     
     Route::get('/admin/message', [SmsNotificationController::class, 'listMessage'])->name('message');
+    Route::post('/admin/message/store', [SmsNotificationController::class, 'store'])->name('message.store');
+    Route::delete('/admin/message/destroy', [SmsNotificationController::class, 'destroy'])->name('message.destroy');
 });

@@ -73,10 +73,8 @@ Disability List
             type="button"
             data-toggle="modal" 
             data-target="#addModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</button>
-            <button href="" class="btn btn-secondary mr-2 float-right"
-            type="button"
-            data-toggle="modal" 
-            data-target="#addModal"><i class="fa fa-eye" aria-hidden="true"></i> Archived</button>
+            <a href="{{route('disability.arclist')}}" class="btn btn-secondary mr-2 float-right"
+            type="button"><i class="fa fa-eye" aria-hidden="true"></i> Archived</a>
         </div>
 
         <div class="card-body">

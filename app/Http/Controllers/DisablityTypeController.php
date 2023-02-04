@@ -82,6 +82,14 @@ class DisablityTypeController extends Controller
     public function archiveList(Request $request){
         $pwd = User::where('type',false)->orderBy('id','DESC')->get();
         $pwd_disability = Disability::with('user')->where('is_archived',true)->orderBy('id','DESC')->get();
-        return view('admin.disability', compact('pwd','pwd_disability'));
+        return view('admin.archived-disability', compact('pwd','pwd_disability'));
+    }
+    public function unarchive(Request $request){
+        $unarc = Disability::findOrFail($request->_id);
+        if($unarc){
+            $unarc->is_archived = false;
+            $unarc->update();
+        }
+        return back()->with('message','Data has been restored!');
     }
 }

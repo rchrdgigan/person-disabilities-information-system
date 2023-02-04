@@ -184,74 +184,76 @@ class PwdController extends Controller
                 $fpdf->Text(194, 76, "X"); //O-
             }
             //Disability
-            $disablities = Disability::where('user_id', $id)->first();
-            $arr_type = ["Deaf or Hard of Hearing","Intelectual Disability","Learning Disability","Mental Disability","Orthopedic Disability","Physical Disability","Pyschosocial Disability","Speech and Language Impairment","Visual Disability"];
-            $i = -1;
-            foreach($arr_type as $data){
-                $i++;
-                if(isset($disablities->type[$i])){
-                    if($disablities->type[$i] == "Deaf or Hard of Hearing"){
-                        $fpdf->Text(22.5, 85.5, "X");
+            $disablities = Disability::where('user_id', $id)->where('is_archived',false)->first();
+            if($disablities){
+                $arr_type = ["Deaf or Hard of Hearing","Intelectual Disability","Learning Disability","Mental Disability","Orthopedic Disability","Physical Disability","Pyschosocial Disability","Speech and Language Impairment","Visual Disability"];
+                $i = -1;
+                foreach($arr_type as $data){
+                    $i++;
+                    if(isset($disablities->type[$i])){
+                        if($disablities->type[$i] == "Deaf or Hard of Hearing"){
+                            $fpdf->Text(22.5, 85.5, "X");
+                        }
+                        if($disablities->type[$i] == "Intelectual Disability"){
+                            $fpdf->Text(22.5, 90, "X");
+                        }
+                        if($disablities->type[$i] == "Learning Disability"){
+                            $fpdf->Text(22.5, 95, "X");
+                        }
+                        if($disablities->type[$i] == "Mental Disability"){
+                            $fpdf->Text(22.5, 99, "X");
+                        }
+                        if($disablities->type[$i] == "Orthopedic Disability"){
+                            $fpdf->Text(22.5, 103, "X");
+                        }
+    
+                        if($disablities->type[$i] == "Physical Disability"){
+                            $fpdf->Text(80.5, 85.5, "X");
+                        }
+                        if($disablities->type[$i] == "Pyschosocial Disability"){
+                            $fpdf->Text(80.5, 90, "X");
+                        }
+                        if($disablities->type[$i] == "Speech and Language Impairment"){
+                            $fpdf->Text(80.5, 95, "X");
+                        }
+                        if($disablities->type[$i] == "Visual Disability"){
+                            $fpdf->Text(80.5, 99, "X");
+                        }
                     }
-                    if($disablities->type[$i] == "Intelectual Disability"){
-                        $fpdf->Text(22.5, 90, "X");
-                    }
-                    if($disablities->type[$i] == "Learning Disability"){
-                        $fpdf->Text(22.5, 95, "X");
-                    }
-                    if($disablities->type[$i] == "Mental Disability"){
-                        $fpdf->Text(22.5, 99, "X");
-                    }
-                    if($disablities->type[$i] == "Orthopedic Disability"){
-                        $fpdf->Text(22.5, 103, "X");
-                    }
-
-                    if($disablities->type[$i] == "Physical Disability"){
-                        $fpdf->Text(80.5, 85.5, "X");
-                    }
-                    if($disablities->type[$i] == "Pyschosocial Disability"){
-                        $fpdf->Text(80.5, 90, "X");
-                    }
-                    if($disablities->type[$i] == "Speech and Language Impairment"){
-                        $fpdf->Text(80.5, 95, "X");
-                    }
-                    if($disablities->type[$i] == "Visual Disability"){
-                        $fpdf->Text(80.5, 99, "X");
+                }
+                //Cause
+                $arr_cause = ["Acquired","Cancer","Chronic Illness","Congenital/Inborn","Injury","Rare Disease","Autism"];
+                $x = -1;
+                foreach($arr_cause as $data){
+                    $x++;
+                    if(isset($disablities->cause[$x])){
+                        if($disablities->cause[$x] == "Acquired"){
+                            $fpdf->Text(152, 85.5, "X");
+                        }
+                        if($disablities->cause[$x] == "Cancer"){
+                            $fpdf->Text(152, 90, "X");
+                        }
+                        if($disablities->cause[$x] == "Chronic Illness"){
+                            $fpdf->Text(152, 95, "X");
+                        }
+                        if($disablities->cause[$x] == "Congenital/Inborn"){
+                            $fpdf->Text(152, 99, "X");
+                        }
+                        if($disablities->cause[$x] == "Injury"){
+                            $fpdf->Text(152, 104, "X");
+                        }
+                        if($disablities->cause[$x] == "Rare Disease"){
+                            $fpdf->Text(152, 108, "X");
+                        }
+                        if($disablities->cause[$x] == "Autism"){
+                            $fpdf->Text(152, 113, "X");
+                        }
                     }
                 }
             }
-            //Cause
-            $arr_cause = ["Acquired","Cancer","Chronic Illness","Congenital/Inborn","Injury","Rare Disease","Autism"];
-            $x = -1;
-            foreach($arr_cause as $data){
-                $x++;
-                if(isset($disablities->cause[$x])){
-                    if($disablities->cause[$x] == "Acquired"){
-                        $fpdf->Text(152, 85.5, "X");
-                    }
-                    if($disablities->cause[$x] == "Cancer"){
-                        $fpdf->Text(152, 90, "X");
-                    }
-                    if($disablities->cause[$x] == "Chronic Illness"){
-                        $fpdf->Text(152, 95, "X");
-                    }
-                    if($disablities->cause[$x] == "Congenital/Inborn"){
-                        $fpdf->Text(152, 99, "X");
-                    }
-                    if($disablities->cause[$x] == "Injury"){
-                        $fpdf->Text(152, 104, "X");
-                    }
-                    if($disablities->cause[$x] == "Rare Disease"){
-                        $fpdf->Text(152, 108, "X");
-                    }
-                    if($disablities->cause[$x] == "Autism"){
-                        $fpdf->Text(152, 113, "X");
-                    }
-                }
-            }
+           
             //Resident Address
             $brgy = Barangay::where('id', $pwd->barangay_id)->first();
-
             $fpdf->Text(15, 125, $pwd->street);
             $fpdf->Text(54, 125, $brgy->brgy);
             $fpdf->Text(94, 125, $pwd->municipality);
@@ -376,44 +378,47 @@ class PwdController extends Controller
                 $fpdf->Text(80, 83, $pwd->fullname.' '.$pwd->sufix);
             }
             //Disability
-            $disablities = Disability::where('user_id', $id)->first();
-            $arr_type = ["Deaf or Hard of Hearing","Intelectual Disability","Learning Disability","Mental Disability","Orthopedic Disability","Physical Disability","Pyschosocial Disability","Speech and Language Impairment","Visual Disability"];
-            $i = -1;
-            foreach($arr_type as $data){
-                $i++;
-                if(isset($disablities->type[$i])){
-
-                    if($disablities->type[$i] == "Deaf or Hard of Hearing"){
-                        $val [] = 'Deaf';
-                    }
-                    if($disablities->type[$i] == "Intelectual Disability"){
-                        $val [] ='Intelectual';
-                    }
-                    if($disablities->type[$i] == "Learning Disability"){
-                        $val [] ='Learning';
-                    }
-                    if($disablities->type[$i] == "Mental Disability"){
-                        $val [] ="Mental";
-                    }
-                    if($disablities->type[$i] == "Orthopedic Disability"){
-                        $val [] ="Orthopedic";
-                    }
-
-                    if($disablities->type[$i] == "Physical Disability"){
-                        $val [] ="Physical";
-                    }
-                    if($disablities->type[$i] == "Pyschosocial Disability"){
-                        $val [] ="Pyschosocial";
-                    }
-                    if($disablities->type[$i] == "Speech and Language Impairment"){
-                        $val [] ="SLI";
-                    }
-                    if($disablities->type[$i] == "Visual Disability"){
-                        $val [] ="Visual";
+            $disablities = Disability::where('user_id', $id)->where('is_archived',false)->first();
+            if($disablities){
+                $arr_type = ["Deaf or Hard of Hearing","Intelectual Disability","Learning Disability","Mental Disability","Orthopedic Disability","Physical Disability","Pyschosocial Disability","Speech and Language Impairment","Visual Disability"];
+                $i = -1;
+                foreach($arr_type as $data){
+                    $i++;
+                    if(isset($disablities->type[$i])){
+    
+                        if($disablities->type[$i] == "Deaf or Hard of Hearing"){
+                            $val [] = 'Deaf';
+                        }
+                        if($disablities->type[$i] == "Intelectual Disability"){
+                            $val [] ='Intelectual';
+                        }
+                        if($disablities->type[$i] == "Learning Disability"){
+                            $val [] ='Learning';
+                        }
+                        if($disablities->type[$i] == "Mental Disability"){
+                            $val [] ="Mental";
+                        }
+                        if($disablities->type[$i] == "Orthopedic Disability"){
+                            $val [] ="Orthopedic";
+                        }
+    
+                        if($disablities->type[$i] == "Physical Disability"){
+                            $val [] ="Physical";
+                        }
+                        if($disablities->type[$i] == "Pyschosocial Disability"){
+                            $val [] ="Pyschosocial";
+                        }
+                        if($disablities->type[$i] == "Speech and Language Impairment"){
+                            $val [] ="SLI";
+                        }
+                        if($disablities->type[$i] == "Visual Disability"){
+                            $val [] ="Visual";
+                        }
                     }
                 }
+                $fpdf->Text(80, 91, implode(",", array_slice($val, 0, 4)));
             }
-            $fpdf->Text(80, 91, implode(",", array_slice($val, 0, 4)));
+            
 
             $fpdf->Text(125, 100, Carbon::now()->format('y').'-'.str_pad($pwd->id, 5, '0', STR_PAD_LEFT));
 
